@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template_string, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import urllib
+import os
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import random
@@ -62,8 +63,34 @@ VERIFY_HTML_TEMPLATE = """
 </html>
 """
 
-app = Flask(__name__)
+# กำหนด root ของโปรเจกต์ (อยู่ใน Database/ ดังนั้นต้อง .. ขึ้นไป 1 ระดับ)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+app = Flask(__name__, static_folder=PROJECT_ROOT, static_url_path='')
 CORS(app)
+
+# ==========================================
+# Serve Static HTML/CSS/JS/Photo Files
+# ==========================================
+@app.route('/Html/<path:filename>')
+def serve_html(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, 'Html'), filename)
+
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, 'css'), filename)
+
+@app.route('/Js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, 'Js'), filename)
+
+@app.route('/Photo/<path:filename>')
+def serve_photo(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, 'Photo'), filename)
+
+@app.route('/')
+def index():
+    return send_from_directory(os.path.join(PROJECT_ROOT, 'Html'), 'Activity_FIET_Webpage.html')
 
 # ==========================================
 # ตั้งค่า Email (SMTP) สำหรับส่งลิงก์ยืนยันตัวตน
@@ -366,7 +393,7 @@ def verify_email(token):
     except Exception as e:
         return render_template_string(VERIFY_HTML_TEMPLATE, status_class="error", icon="⚠️", title="เกิดข้อผิดพลาด", message="รหัส Token ไม่ถูกต้องหรือเกิดข้อผิดพลาดบางประการ")
 
-@app.route('/', methods=['GET'])
+@app.route('/api/status', methods=['GET'])
 def home():
     return jsonify({'status': 'online', 'message': 'API สำหรับ SQL Server กำลังทำงาน!'})
 
