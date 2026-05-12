@@ -167,6 +167,10 @@ class TeacherUser(db.Model):
     FirstName = db.Column(db.NVARCHAR(300))
     LastName = db.Column(db.NVARCHAR(300))
     Major = db.Column(db.NVARCHAR(100))
+    Email = db.Column(db.NVARCHAR(255))
+    Telephone = db.Column(db.NVARCHAR(20))
+    Birthday = db.Column(db.NVARCHAR(100))
+    ProfilePicture = db.Column(db.NVARCHAR(None))
 
 # ยังไม่มีตาราง StaffUser ในฐานข้อมูล ลบโมเดลออกก่อนเพื่อไม่ให้เกิด Error
 
@@ -320,6 +324,41 @@ def student_profile():
     except Exception as e:
         return jsonify({'status': 'error', 'message': f'Database Error: {str(e)}'}), 500
 
+@app.route('/api/teacher/profile', methods=['GET'])
+def teacher_profile():
+    user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'Missing user_id'}), 400
+
+    try:
+        user = db.session.get(User, int(user_id))
+        if not user:
+            return jsonify({'status': 'error', 'message': 'User not found'}), 404
+
+        teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
+        if not teacher:
+            return jsonify({'status': 'error', 'message': 'Teacher profile not found'}), 404
+
+        return jsonify({
+            'status': 'success',
+            'data': {
+                'user_id': user.ID,
+                'username': user.username,
+                'email': teacher.Email or user.email,
+                'full_name': f"{teacher.FirstName or ''} {teacher.LastName or ''}".strip(),
+                'major': teacher.Major,
+                'position': user.role.upper(),
+                'telephone': teacher.Telephone,
+                'birthday': teacher.Birthday,
+                'profile_picture': teacher.ProfilePicture
+            }
+        }), 200
+
+    except ValueError:
+        return jsonify({'status': 'error', 'message': 'Invalid user_id'}), 400
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': f'Database Error: {str(e)}'}), 500
+
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -377,6 +416,92 @@ def register():
         """
         
         # ส่งอีเมลแบบเบื้องหลัง (Background Thread) เพื่อความรวดเร็ว
+        Thread(target=send_async_email, args=(app, msg)).start()
+
+        return jsonify({'status': 'success', 'message': 'กรุณาเช็คอีเมลเพื่อยืนยันการสมัคร'}), 200
+
+    except Exception as e:
+        db.session.rollback() # ยกเลิกการเซฟถ้าพัง
+        return jsonify({'status': 'error', 'message': f'Error: {str(e)}'}), 500
+
+@app.route('/register_teacher', methods=['POST'])
+def register_teacher():
+    # รองรับ FormData เพราะมีไฟล์รูปภาพ
+    id_card = request.form.get('id_card')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    
+    if not id_card or not email or not password:
+        return jsonify({'status': 'error', 'message': 'ข้อมูลไม่ครบถ้วน'}), 400
+
+    try:
+        # เช็คว่ามีคนใช้ ID นี้สมัครไปแล้วหรือยัง
+        existing_user = User.query.filter_by(username=id_card).first()
+        if existing_user:
+            return jsonify({'status': 'error', 'message': 'รหัสประจำตัวนี้ถูกใช้ลงทะเบียนแล้ว'}), 400
+
+        position = request.form.get('position')
+        # ตำแหน่งเป็น TA หรือ Teacher
+        role_name = 'teacher'
+        if position == 'TA':
+            role_name = 'ta' # ถ้ามี role TA
+        
+        # 1. บันทึกข้อมูลลงตาราง User หลักก่อน
+        new_user = User(username=id_card, password=password, role=role_name, is_verified=False, email=email)
+        db.session.add(new_user)
+        db.session.commit() # เซฟเพื่อให้ได้ ID อัตโนมัติมาก่อน
+
+        # จัดการรูปภาพ
+        profile_picture_path = None
+        if 'profile_picture' in request.files:
+            file = request.files['profile_picture']
+            if file.filename != '':
+                # สร้างโฟลเดอร์ถ้าไม่มี
+                upload_dir = os.path.join(PROJECT_ROOT, 'Photo', 'Profile')
+                if not os.path.exists(upload_dir):
+                    os.makedirs(upload_dir)
+                
+                # เปลี่ยนชื่อไฟล์เพื่อไม่ให้ซ้ำ
+                ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else 'jpg'
+                filename = f"teacher_{new_user.ID}_{int(datetime.now().timestamp())}.{ext}"
+                filepath = os.path.join(upload_dir, filename)
+                file.save(filepath)
+                profile_picture_path = f"/Photo/Profile/{filename}"
+
+        # 2. บันทึกข้อมูลลงตาราง TeacherUser
+        new_teacher = TeacherUser(
+            UserID=new_user.ID,
+            FirstName=request.form.get('thai_first_name'),
+            LastName=request.form.get('thai_last_name'),
+            Major=request.form.get('major'),
+            Email=email,
+            Telephone=request.form.get('telephone'),
+            Birthday=request.form.get('birthday'),
+            ProfilePicture=profile_picture_path
+        )
+        db.session.add(new_teacher)
+        db.session.commit()
+
+        # 3. สร้าง Token และส่ง Email
+        token = s.dumps(email, salt='email-confirm')
+        
+        # ส่งลิงก์ไปยัง API verify พร้อมแนบ Token และ ID ของผู้ใช้
+        confirm_url = f"http://127.0.0.1:5000/verify/{token}?user_id={new_user.ID}"
+
+        msg = Message('ยืนยันการสมัครสมาชิก Activity Mod FIET', sender=app.config['MAIL_USERNAME'], recipients=[email])
+        msg.body = f"สวัสดี {request.form.get('thai_first_name')},\n\nกรุณาคลิกลิงก์ด้านล่างเพื่อยืนยันบัญชีของคุณ:\n{confirm_url}\n\nลิงก์นี้มีอายุ 1 ชั่วโมง"
+        msg.html = f"""
+        <div style="font-family: 'Kanit', Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 30px; background-color: #f9f9f9; border-radius: 10px; text-align: center; border: 1px solid #eee;">
+            <h2 style="color: #333;">ยืนยันการสมัครสมาชิก</h2>
+            <p style="color: #555; font-size: 16px;">สวัสดีคุณ <strong>{request.form.get('thai_first_name')}</strong>,</p>
+            <p style="color: #555; font-size: 16px;">ขอบคุณที่สมัครเข้าร่วม Activity Mod FIET กรุณาคลิกที่ปุ่มด้านล่างเพื่อยืนยันอีเมลของคุณครับ</p>
+            <div style="margin: 30px 0;">
+                <a href="{confirm_url}" style="background-color: #70D0F4; color: #fff; padding: 14px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">Verify Account</a>
+            </div>
+            <p style="color: #999; font-size: 12px;">* ลิงก์นี้มีอายุ 1 ชั่วโมง หากคุณไม่ได้สมัครสมาชิก กรุณาเพิกเฉยต่ออีเมลฉบับนี้</p>
+        </div>
+        """
+        
         Thread(target=send_async_email, args=(app, msg)).start()
 
         return jsonify({'status': 'success', 'message': 'กรุณาเช็คอีเมลเพื่อยืนยันการสมัคร'}), 200

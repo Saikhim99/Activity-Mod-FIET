@@ -16,13 +16,13 @@
 <body>
     <i class="fa-solid fa-circle-user"></i>
     <h2>Register</h2>
-    <form action="Activity_FIET_Webpage.html" onsubmit="submitForm(event)">
+    <form onsubmit="submitTeacherForm(event)">
 
         <div class="input_box">
             <i class="fa-solid fa-id-card"></i>
-            <input type="text" id="id_card" inputmode="numeric" maxlength="17" placeholder="รหัสนักศึกษา/อาจารย์" required
+            <input type="text" id="id_card" inputmode="numeric" maxlength="20" placeholder="รหัสนักศึกษา/อาจารย์" required
                 oninvalid="this.setCustomValidity('กรุณากรอกรหัสนักศึกษา/อาจารย์')"
-                oninput="this.setCustomValidity(''); formatIDCard(this)">
+                oninput="this.setCustomValidity('')">
         </div>
 
         <div class="input_box">
@@ -30,6 +30,7 @@
             <input type="password" id="password" placeholder="รหัสผ่าน" required
                 oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')"
                 oninput="this.setCustomValidity('')">
+             <i class="fa-solid fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
         </div>
 
         <div class="input_box">

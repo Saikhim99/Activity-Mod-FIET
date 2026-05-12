@@ -32,30 +32,63 @@ body {
     padding-left: 10px;
 }
 
-.input_box i {
+.input_box i:first-child:not(#togglePassword):not(.left-icon) {
+    position: absolute;
+    left: 12px;
+    z-index: 2;
     font-size: 20px;
     color: #908e8e;
-    margin-right: 5px;
 }
 
 .input_box input, .input_box select {
-    width: 100%;
+    flex: 1 1 50%;
+    min-width: 0;
     height: 100%;
     background: transparent;
     border: none;
     outline: none;
     font-size: 18px;
-    color: #757575; /* ให้สีใกล้เคียงกับ placeholder เดิม */
+    color: #757575;
+    padding-left: 40px; /* เว้นที่ด้านซ้ายให้ไอคอน */
 }
 
 .input_box input::placeholder {
     color: #908e8e;
 }
 
+/* แก้ไขสีพื้นหลังเวลาเบราว์เซอร์เติมข้อมูลอัตโนมัติ (Autofill) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #FFFAFA inset !important;
+    -webkit-text-fill-color: #757575 !important;
+    transition: background-color 5000s ease-in-out 0s;
+    border-radius: 15px;
+}
+
+/* สไตล์สำหรับกล่องที่มี 2 input (ชื่อ-นามสกุล) เพื่อให้แบ่งครึ่งเท่ากันเป๊ะ */
+.input_box input + input {
+    border-left: 1px solid #ddd;
+    margin-left: 0;
+    padding-left: 15px !important; /* ช่องที่สองไม่ต้องเว้นที่ให้ไอคอน */
+}
+
 .input_box .fa-lock {
     position: static;
     margin-right: 10px;
     color: #908e8e;
+}
+
+#togglePassword {
+    margin-right: 15px;
+    color: #908e8e;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+#togglePassword:hover {
+    color: #70D0F4;
 }
 
 button {

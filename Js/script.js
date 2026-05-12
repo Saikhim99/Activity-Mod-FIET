@@ -23,7 +23,7 @@ if (student) {
 }
 
 const togglePassword = document.querySelector('#togglePassword');
-const passwordInput = document.querySelector('#passwordInput');
+const passwordInput = document.querySelector('#passwordInput') || document.querySelector('#password');
 if (togglePassword && passwordInput) {
     togglePassword.addEventListener('click', function () {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text': 'password';
@@ -48,7 +48,7 @@ function handleLoginSuccess(userData) {
 
     if (userRole === 'admin') {
         window.location.href = '/Html/AdminBuild_Activity.html';
-    } else if (userRole === 'teacher') {
+    } else if (userRole === 'teacher' || userRole === 'staff' || userRole === 'ta') {
         window.location.href = '/Html/HomepageTeacher.html';
     } else {
         window.location.href = '/Html/Homepage.html';
@@ -216,6 +216,66 @@ async function submitForm(event) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            Swal.fire({
+                title: 'ลงทะเบียนสำเร็จ!',
+                text: 'กรุณาตรวจสอบอีเมลของคุณเพื่อยืนยันตัวตน',
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#70D0F4',
+                allowOutsideClick: false 
+            }).then((res) => {
+                if (res.isConfirmed) {
+                    window.close(); // กลับไปหน้าล็อกอิน
+                }
+            });
+        } else {
+            Swal.fire('ข้อผิดพลาด', result.message || 'ไม่สามารถลงทะเบียนได้', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        Swal.fire('ข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error');
+    }
+}
+
+async function submitTeacherForm(event) {
+    event.preventDefault();
+
+    // สร้าง FormData เพราะมีไฟล์รูปภาพ
+    const formData = new FormData();
+    formData.append('id_card', document.getElementById('id_card').value.replace(/-/g, ''));
+    formData.append('password', document.getElementById('password').value);
+    formData.append('thai_first_name', document.getElementById('thai_first_name').value);
+    formData.append('thai_last_name', document.getElementById('thai_last_name').value);
+    formData.append('position', document.getElementById('position').value);
+    formData.append('major', document.getElementById('major').value);
+    formData.append('birthday', document.getElementById('birthday').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('telephone', document.getElementById('telephone').value.replace(/-/g, ''));
+    
+    const fileInput = document.getElementById('profile_picture');
+    if (fileInput.files.length > 0) {
+        formData.append('profile_picture', fileInput.files[0]);
+    }
+
+    // แสดงหน้าโหลด
+    Swal.fire({
+        title: 'กำลังลงทะเบียน...',
+        text: 'กรุณารอสักครู่ ระบบกำลังส่งอีเมลยืนยัน',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/register_teacher`, {
+            method: 'POST',
+            body: formData
         });
 
         const result = await response.json();
@@ -888,3 +948,82 @@ function updateFileName(inputElement) {
         uploadBox.style.padding = '25px 20px';
     }
 }
+
+// --- Teacher Profile Functions ---
+async function fetchTeacherProfile() {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) return;
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/teacher/profile?user_id=${userId}`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            updateTeacherProfileUI(data.data);
+        }
+    } catch (error) {
+        console.error('Error fetching teacher profile:', error);
+    }
+}
+
+function updateTeacherProfileUI(teacher) {
+    // Update Header Name (for both Homepage and Profile)
+    const headerName = document.getElementById('teacherNameHeader');
+    if (headerName) {
+        headerName.innerHTML = `<i class="fa-regular fa-circle-user icon-spacing"></i> อาจารย์ ${teacher.full_name}`;
+    }
+
+    // Update Profile Page specific fields
+    const nameCard = document.getElementById('teacherNameCard');
+    if (nameCard) nameCard.innerText = teacher.full_name;
+
+    const majorCard = document.getElementById('teacherMajorCard');
+    if (majorCard) majorCard.innerText = `ภาควิชา${teacher.major}`;
+
+    const roleBadge = document.getElementById('teacherRoleBadge');
+    if (roleBadge) {
+        roleBadge.innerHTML = `<i class="fa-solid fa-dog"></i> ${teacher.position}`;
+    }
+
+    const emailCard = document.getElementById('teacherEmailCard');
+    if (emailCard) emailCard.innerText = teacher.email;
+
+    const phoneCard = document.getElementById('teacherPhoneCard');
+    if (phoneCard) phoneCard.innerText = teacher.telephone;
+
+    // Info Grid
+    const nameInfo = document.getElementById('teacherNameInfo');
+    if (nameInfo) nameInfo.innerText = teacher.full_name;
+
+    const emailInfo = document.getElementById('teacherEmailInfo');
+    if (emailInfo) emailInfo.innerText = teacher.email;
+
+    const phoneInfo = document.getElementById('teacherPhoneInfo');
+    if (phoneInfo) phoneInfo.innerText = teacher.telephone;
+
+    const posInfo = document.getElementById('teacherPositionInfo');
+    if (posInfo) posInfo.innerText = teacher.position === 'TEACHER' ? 'อาจารย์ประจำสาขา' : 'TA ประจำสาขา';
+
+    const majorInfo = document.getElementById('teacherMajorInfo');
+    if (majorInfo) majorInfo.innerText = teacher.major;
+
+    const idInfo = document.getElementById('teacherIDInfo');
+    if (idInfo) idInfo.innerText = teacher.username;
+
+    // Avatar
+    const avatar = document.getElementById('teacherAvatar');
+    if (avatar && teacher.profile_picture) {
+        avatar.classList.remove('placeholder-avatar');
+        avatar.style.backgroundImage = `url('${teacher.profile_picture}')`;
+        avatar.style.backgroundSize = 'cover';
+        avatar.style.backgroundPosition = 'center';
+    }
+}
+
+// Auto-run on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    if (path.includes('HomepageTeacher.html') || path.includes('ProfileTeacher.html')) {
+        fetchTeacherProfile();
+    }
+});
