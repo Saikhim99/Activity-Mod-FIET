@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Activity.css">
+    <link rel="stylesheet" href="../css/SeriesWorkshop2.css">
+    <link rel="stylesheet" href="../css/RegisterWorkshop.css">
+    <title>FIET Register Workshop</title>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">ACTIVITY MOD FIET</div>
+        <nav class="nav-links">
+            <a href="Homepage.html">หน้าหลัก</a>
+            <a href="Activity.html">กิจกรรม</a>
+            <a href="#">สาขาวิชา</a>
+            <div class="dropdown profile-dropdown-container">
+                <a href="#" class="dropbtn" id="profileMenuBtn"><i class="fa-solid fa-bars menu-icon"
+                        style="font-size: 1.2rem;"></i></a>
+                <div class="dropdown-content profile-dropdown" id="profileSidebar">
+                    <a href="#" class="profile-link"><i class="fa-regular fa-circle-user icon-spacing"></i> สมชาย
+                        สายสมร</a>
+                    <a href="Activity_FIET_Webpage.html" class="logout-link"><i
+                            class="fa-solid fa-arrow-right-from-bracket icon-spacing"></i> ออกจากระบบ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="Activity.html"><i class="fa-solid fa-chevron-left"></i> กลับ</a>
+        </div>
+
+        <!-- Registration Info Card -->
+        <div class="reg-info-card">
+            <div class="reg-info-header">
+                <h2>ลงทะเบียนเข้าร่วมกิจกรรม</h2>
+            </div>
+            <div class="reg-info-body">
+                <p><strong>กิจกรรม:</strong> <span id="info-activity">FIET SERIES WORKSHOP SEASON 2</span></p>
+                <p><strong>สาขา:</strong> <span id="info-major">ครุศาสตร์โยธา</span></p>
+                <div class="reg-info-item">
+                    <i class="fa-regular fa-calendar"></i> <span id="info-date">28 มีนาคม 2570</span>
+                </div>
+                <div class="reg-info-item">
+                    <i class="fa-solid fa-location-dot"></i> <span id="info-location">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี S13 ชั้น 3</span>
+                </div>
+                <hr>
+                <ul class="cert-list">
+                    <li><i class="fa-solid fa-crown"></i>
+                        <div>ในกิจกรรม Workshop นี้ น้อง ๆ จะได้รับใบเกียรติบัตรสำหรับ</div>
+                    </li>
+                    <li><i class="fa-solid fa-square-check"></i>
+                        <div>ใบเกียรติบัตรการเข้าร่วมกิจกรรม Workshop (ได้ทุกคนที่เข้าร่วมกิจกรรม)</div>
+                    </li>
+                    <li><i class="fa-solid fa-square-check"></i>
+                        <div>ใบเกียรติบัตรผ่านเกณฑ์ Workshop พร้อมดาว 1 ดวง และประทับตราเข้ารับสมัครนักศึกษา
+                            ภายใต้โครงการรับนักศึกษา "Pre-U KMUTT Admission" เฉพาะผู้ที่ผ่านการประเมินกิจกรรมจากสาขาวิชา
+                            > 80% เท่านั้น</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <form id="registrationForm" class="reg-form-card" onsubmit="handleRegistration(event)">
+            <div class="form-header">
+                <i class="fa-solid fa-user"></i>
+                <h3>ข้อมูลส่วนตัว</h3>
+            </div>
+
+            <div class="form-grid">
+                <!-- Row 1 -->
+                <div class="form-group span-prefix">
+                    <label>คำนำหน้า <span class="required">*</span></label>
+                    <select required>
+                        <option value="นาย">นาย</option>
+                        <option value="นาง">นาง</option>
+                        <option value="นางสาว">นางสาว</option>
+                    </select>
+                </div>
+                <div class="form-group span-name">
+                    <label>ชื่อ - สกุล <span class="required">*</span></label>
+                    <input type="text" id="reg_fullname" placeholder="เดวิด บีเวอร์ ค็อปเปอร์" required>
+                </div>
+                <div class="form-group span-edu">
+                    <label>ระดับชั้นการศึกษา</label>
+                    <select>
+                        <option value="มัธยมศึกษาปีที่ 4">มัธยมศึกษาปีที่ 4</option>
+                        <option value="มัธยมศึกษาปีที่ 5">มัธยมศึกษาปีที่ 5</option>
+                        <option value="มัธยมศึกษาปีที่ 6">มัธยมศึกษาปีที่ 6</option>
+                        <option value="ปวช.">ปวช.1</option>
+                        <option value="ปวช.">ปวช.2</option>
+                        <option value="ปวช.">ปวช.3</option>
+                        <option value="อื่นๆ">อื่น ๆ </option>
+                    </select>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="form-group span-school">
+                    <label>สถานศึกษา <span class="required">*</span></label>
+                    <input type="text" id="reg_school" placeholder="โรงเรียน นานาชาติบางมด" required>
+                </div>
+                <div class="form-group span-gpax">
+                    <label>GPAX <span class="required">*</span></label>
+                    <input type="number" step="0.01" min="0" max="4" placeholder="4.00" required>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="form-group span-half">
+                    <label>อีเมล <span class="required">*</span></label>
+                    <input type="email" id="reg_email" placeholder="david@gmail.com" pattern=".*@gmail\.com$"
+                        title="กรุณากรอกอีเมล @gmail.com เท่านั้น" required>
+                </div>
+                <div class="form-group span-half">
+                    <label>เบอร์โทรที่ติดต่อได้ <span class="required">*</span></label>
+                    <input type="tel" id="reg_phone" placeholder="0999999999" pattern="[0-9]{10}" maxlength="10"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+                        title="กรุณากรอกเบอร์โทรศัพท์เป็นตัวเลข 10 หลัก" required>
+                </div>
+            </div>
+
+            <hr class="form-divider">
+
+            <div class="form-group full-width">
+                <label>สนใจเข้าศึกษาต่อในหลักสูตรใด <span class="required">*</span></label>
+                <select required>
+                    <option value="" disabled selected hidden>กรุณาเลือกหลักสูตร</option>
+                    <option>ครุศาสตร์เครื่องกล</option>
+                    <option>ครุศาสตร์โยธา</option>
+                    <option>ครุศาสตรไฟฟ้า - ไฟฟ้ากำลัง</option>
+                    <option>ครุศาสตรไฟฟ้า - คอมพิวเตอร์</option>
+                    <option>ครุศาสตรไฟฟ้า - อิเล็กทรอนิกส์ระบบอัจฉริยะ</option>
+                    <option>ครุศาสตร์อุตสาหกรรม</option>
+                    <option>เทคโนโลยีการศึกษาและสื่อสารมวลชน</option>
+                    <option>เทคโนโลยีการพิมพ์และบรรจุภัณฑ์</option>
+                    <option>วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label>รู้จักงาน FIET Series Workshop ผ่านช่องทางไหน <span class="required">*</span></label>
+                <select required>
+                    <option value="" disabled selected hidden>กรุณาเลือกช่องทาง</option>
+                    <option value="facebook">Page Facebook : คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+                    <option value="facebook">Page Facebook : FITE Admission</option>
+                    <option value="instagram">Instagram : คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี มจธ.</option>
+                    <option value="tiktok">TikTok : fiet.kmutt</option>
+                    <option value="website">Website : Dek-D</option>
+                    <option value="Parents">ผู้ปกครอง</option>
+                    <option value="teacher">คุณครูที่โรงเรียน</option>
+                    <option value="friend">เพื่อน / คนรู้จัก</option>
+                    <option value="Senior">รุ่นพี่ที่กำลังศึกษาอยู่ที่คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี มจธ.</option>
+                    <option value="other">อื่น ๆ</option>
+                </select>
+            </div>
+
+            <!-- Submit Button (Added per user request) -->
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">สมัคร</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h2>
+            </div>
+            <div class="footer-right">
+                <h3>ติดต่อเรา</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> 126 ถนนประชาอุทิศแขวงบางมดเขตทุ่งครุ<br>กรุงเทพมหานคร
+                        10140</li>
+                    <li><i class="fa-solid fa-phone"></i> 02-4709518</li>
+                    <li><i class="fa-solid fa-envelope"></i> fietkmut@gmail.com</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/Js/script.js"></script>
+    <script>
+        function handleRegistration(event) {
+            event.preventDefault(); // Prevent page reload on form submit
+
+            Swal.fire({
+                title: 'ยืนยันการสมัคร',
+                text: 'ระบบได้รับข้อมูลการสมัครของคุณเรียบร้อยแล้ว',
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#f59e0b',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect back to the activity page
+                    window.location.href = "Activity.html";
+                }
+            });
+        }
+
+        // --- เพิ่มส่วน Auto-fill ข้อมูล ---
+        document.addEventListener("DOMContentLoaded", async function() {
+            // 1. ดึงข้อมูลจาก URL Parameters มาแสดงผล
+            const urlParams = new URLSearchParams(window.location.search);
+            const major = urlParams.get('major');
+            const activity = urlParams.get('activity');
+            const date = urlParams.get('date');
+            const loc = urlParams.get('loc');
+
+            if (major) document.getElementById('info-major').textContent = major;
+            if (activity) document.getElementById('info-activity').textContent = activity;
+            if (date) document.getElementById('info-date').textContent = date;
+            if (loc) document.getElementById('info-location').textContent = loc;
+
+            // 2. ดึงข้อมูลโปรไฟล์มา Auto-fill ในฟอร์ม
+            const userId = localStorage.getItem('user_id');
+            if (userId) {
+                try {
+                    const apiBaseUrl = window.API_BASE_URL || 'http://127.0.0.1:5000';
+                    const response = await fetch(`${apiBaseUrl}/api/student/profile?user_id=${userId}`);
+                    if (response.ok) {
+                        const result = await response.json();
+                        if (result.status === 'success' && result.data) {
+                            const data = result.data;
+                            if (data.full_name) document.getElementById('reg_fullname').value = data.full_name;
+                            if (data.school) document.getElementById('reg_school').value = data.school;
+                            if (data.email) document.getElementById('reg_email').value = data.email;
+                            if (data.telephone) document.getElementById('reg_phone').value = data.telephone;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching profile for auto-fill:", error);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

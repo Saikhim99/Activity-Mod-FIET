@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/AdminPage.css">
     <link rel="stylesheet" href="../css/AdminBuild.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="admin-container">
@@ -132,7 +134,7 @@
                     </div>
                     <div class="form-actions" style="border:none; margin-top:0; padding-top:0;">
                         <a href="AdminPage_Activity.html" class="btn-cancel">ยกเลิก</a>
-                        <button class="btn-submit" onclick="">
+                        <button class="btn-submit" onclick="handleSaveActivity()">
                             บันทึกกิจกรรม
                         </button>
                     </div>
@@ -224,7 +226,7 @@
                     </div>
                     <div class="form-actions" style="border:none; margin-top:0; padding-top:0;">
                         <a href="AdminPage_Activity.html" class="btn-cancel">ยกเลิก</a>
-                        <button class="btn-submit">
+                        <button class="btn-submit" onclick="handleSaveActivity()">
                             <i class='bx bx-save'></i> บันทึกกิจกรรม
                         </button>
                     </div>
@@ -237,5 +239,21 @@
 </div>
 
 <script src="../Js/script.js"></script>
+<script>
+    function handleSaveActivity() {
+        // จำลองการบันทึก
+        Swal.fire({
+            title: "บันทึกสำเร็จ!",
+            text: "บันทึกกิจกรรมใหม่เรียบร้อยแล้ว",
+            icon: "success",
+            confirmButtonColor: "#f39c12",
+            confirmButtonText: "ตกลง"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "AdminPage_Activity.html";
+            }
+        });
+    }
+</script>
 </body>
 </html>
