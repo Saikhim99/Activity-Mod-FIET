@@ -220,7 +220,7 @@ async function submitForm(event) {
                 allowOutsideClick: false 
             }).then((res) => {
                 if (res.isConfirmed) {
-                    window.location.href = "Activity_FIET_Webpage.html"; // กลับไปหน้าล็อกอิน
+                    window.close(); // กลับไปหน้าล็อกอิน
                 }
             });
         } else {
@@ -760,3 +760,103 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// --- RegisterTeacher Custom Dropdown ---
+function toggleSingleDropdown(panelId, chevronId, dropdownId) {
+    const panel = document.getElementById(panelId);
+    const chevron = document.getElementById(chevronId);
+    const trigger = document.querySelector(`#${dropdownId} .checklist-trigger`);
+    
+    // Close others
+    document.querySelectorAll('.checklist-panel').forEach(p => {
+        if (p.id !== panelId) p.classList.remove('open');
+    });
+    document.querySelectorAll('.checklist-trigger .chevron').forEach(c => {
+        if (c.id !== chevronId) c.style.transform = 'rotate(0deg)';
+    });
+    document.querySelectorAll('.checklist-trigger').forEach(t => {
+        if (t !== trigger) t.classList.remove('open');
+    });
+
+    const isOpen = panel.classList.contains('open');
+    if (isOpen) {
+        panel.classList.remove('open');
+        trigger.classList.remove('open');
+        if(chevron) chevron.style.transform = 'rotate(0deg)';
+    } else {
+        panel.classList.add('open');
+        trigger.classList.add('open');
+        if(chevron) chevron.style.transform = 'rotate(180deg)';
+    }
+}
+
+function selectDropdownItem(radioElement, triggerTextId, dropdownId, hiddenSelectId) {
+    const triggerText = document.getElementById(triggerTextId);
+    const hiddenSelect = document.getElementById(hiddenSelectId);
+    
+    // Update text
+    triggerText.innerText = radioElement.nextElementSibling.innerText;
+    triggerText.style.color = '#333';
+    
+    // Update hidden select
+    hiddenSelect.value = radioElement.value;
+    // Clear validation error if any
+    hiddenSelect.setCustomValidity('');
+    
+    // Close panel
+    const panel = radioElement.closest('.checklist-panel');
+    const trigger = document.querySelector(`#${dropdownId} .checklist-trigger`);
+    const chevron = document.querySelector(`#${dropdownId} .chevron`);
+    
+    panel.classList.remove('open');
+    trigger.classList.remove('open');
+    if (chevron) chevron.style.transform = 'rotate(0deg)';
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.checklist-dropdown')) {
+        document.querySelectorAll('.checklist-panel').forEach(p => p.classList.remove('open'));
+        document.querySelectorAll('.checklist-trigger').forEach(t => t.classList.remove('open'));
+        document.querySelectorAll('.checklist-trigger .chevron').forEach(c => c.style.transform = 'rotate(0deg)');
+    }
+});
+
+// --- RegisterTeacher Image Upload ---
+function updateFileName(inputElement) {
+    const uploadText = document.getElementById('uploadText');
+    const uploadBox = document.getElementById('uploadBox');
+    const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    if (inputElement.files && inputElement.files.length > 0) {
+        const file = inputElement.files[0];
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                uploadPlaceholder.style.display = 'none';
+                uploadBox.style.borderColor = '#70D0F4';
+                uploadBox.style.background = '#f0faff';
+                uploadBox.style.padding = '10px';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            uploadText.innerText = `เลือกไฟล์: ${file.name}`;
+            uploadText.style.color = '#333';
+            uploadText.style.fontWeight = '500';
+            uploadBox.style.borderColor = '#70D0F4';
+            uploadBox.style.background = '#f0faff';
+        }
+    } else {
+        imagePreview.style.display = 'none';
+        imagePreview.src = '';
+        uploadPlaceholder.style.display = 'block';
+        uploadText.innerText = 'คลิกเพื่ออัปโหลดรูปภาพโปรไฟล์';
+        uploadText.style.color = '#757575';
+        uploadText.style.fontWeight = 'normal';
+        uploadBox.style.borderColor = '#ddd';
+        uploadBox.style.background = '#FFFAFA';
+        uploadBox.style.padding = '25px 20px';
+    }
+}

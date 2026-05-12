@@ -15,7 +15,7 @@
 
 <body>
     <i class="fa-solid fa-circle-user"></i>
-    <h1>Register</h1>
+    <h2>Register</h2>
     <form action="Activity_FIET_Webpage.html" onsubmit="submitForm(event)">
 
         <div class="input_box">
@@ -42,18 +42,70 @@
                 oninput="this.setCustomValidity('')">
         </div>
 
-        <div class="input_box">
-            <i class="fa-solid fa-thumbtack"></i>
-            <select id="position" required oninvalid="this.setCustomValidity('กรุณาเลือกตำแหน่ง')" oninput="this.setCustomValidity('')">
+        <div class="checklist-dropdown" id="positionDropdown">
+            <button type="button" class="checklist-trigger" onclick="toggleSingleDropdown('positionPanel', 'positionChevron', 'positionDropdown')">
+                <div style="display: flex; align-items: center;">
+                    <i class="fa-solid fa-thumbtack left-icon"></i>
+                    <span id="positionTriggerText">ตำแหน่ง</span>
+                </div>
+                <i class='fa-solid fa-chevron-down chevron' id="positionChevron"></i>
+            </button>
+            <div class="checklist-panel" id="positionPanel">
+                <label class="checklist-item">
+                    <input type="radio" name="position_radio" value="TA" onchange="selectDropdownItem(this, 'positionTriggerText', 'positionDropdown', 'position')">
+                    <span>TA</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="position_radio" value="Teacher" onchange="selectDropdownItem(this, 'positionTriggerText', 'positionDropdown', 'position')">
+                    <span>อาจารย์</span>
+                </label>
+            </div>
+            <select id="position" required style="display: none;" oninvalid="this.setCustomValidity('กรุณาเลือกตำแหน่ง')" oninput="this.setCustomValidity('')">
                 <option value="" disabled selected hidden>ตำแหน่ง</option>
                 <option value="TA">TA</option>
                 <option value="Teacher">อาจารย์</option>
             </select>
         </div>
 
-        <div class="input_box">
-            <i class="fa-solid fa-microscope"></i>
-            <select id="major" required oninvalid="this.setCustomValidity('กรุณาเลือกสาขาภาควิชา')" oninput="this.setCustomValidity('')">
+        <div class="checklist-dropdown" id="majorDropdown">
+            <button type="button" class="checklist-trigger" onclick="toggleSingleDropdown('majorPanel', 'majorChevron', 'majorDropdown')">
+                <div style="display: flex; align-items: center;">
+                    <i class="fa-solid fa-microscope left-icon"></i>
+                    <span id="majorTriggerText">สาขาภาควิชา</span>
+                </div>
+                <i class='fa-solid fa-chevron-down chevron' id="majorChevron"></i>
+            </button>
+            <div class="checklist-panel" id="majorPanel">
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="MTE" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>MTE (ครุศาสตร์เครื่องกล)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="CTE" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>CTE (ครุศาสตร์โยธา)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="ETE" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>ETE (ครุศาสตร์ไฟฟ้า)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="PTE" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>PTE (ครุศาสตร์อุตสาหการ)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="ECT" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>ECT (เทคโนโลยีการศึกษาและสื่อสารมวลชน)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="PPT" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>PPT (เทคโนโลยีการพิมพ์และบรรจุภัณฑ์)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="radio" name="major_radio" value="CMM" onchange="selectDropdownItem(this, 'majorTriggerText', 'majorDropdown', 'major')">
+                    <span>CMM (วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย)</span>
+                </label>
+            </div>
+            <select id="major" required style="display: none;" oninvalid="this.setCustomValidity('กรุณาเลือกสาขาภาควิชา')" oninput="this.setCustomValidity('')">
                 <option value="" disabled selected hidden>สาขาภาควิชา</option>
                 <option value="MTE">MTE (ครุศาสตร์เครื่องกล)</option>
                 <option value="CTE">CTE (ครุศาสตร์โยธา)</option>
@@ -86,15 +138,21 @@
                 oninput="this.setCustomValidity(''); formatPhoneNumber(this)">
         </div>
 
-        <div class="input_box" style="background: transparent;">
-            <i class="fa-solid fa-image" style="background: #FFFAFA; padding: 15px; border-radius: 15px 0 0 15px;"></i>
-            <input type="file" id="profile_picture" accept="image/*" required
-                style="background: #FFFAFA; padding-top: 12px; border-radius: 0 15px 15px 0;"
-                oninvalid="this.setCustomValidity('กรุณาอัปโหลดรูปภาพโปรไฟล์')"
-                oninput="this.setCustomValidity('')">
+        <div class="upload-box-container">
+            <label class="upload-box" for="profile_picture" id="uploadBox">
+                <input type="file" id="profile_picture" accept="image/*" required
+                    oninvalid="this.setCustomValidity('กรุณาอัปโหลดรูปภาพโปรไฟล์')"
+                    oninput="this.setCustomValidity(''); updateFileName(this)">
+                <div id="uploadPlaceholder">
+                    <i class="fa-solid fa-image"></i>
+                    <p id="uploadText">คลิกเพื่ออัปโหลดรูปภาพโปรไฟล์</p>
+                    <span>PNG, JPG, WEBP สูงสุด 5MB</span>
+                </div>
+                <img id="imagePreview" src="" alt="Image Preview" style="display: none; max-width: 100%; max-height: 100%; border-radius: 8px; margin: 0 auto; object-fit: contain;">
+            </label>
         </div>
 
-        <button type="submit">ยืนยัน</button>
+        <button type="submit" style="margin-top: 20px;">ยืนยัน</button>
 
         <h5>มีบัญชีอยู่แล้ว ? <a href="#" onclick="goLogin(event)">เข้าสู่ระบบ</a></h5>
     </form>

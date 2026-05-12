@@ -99,3 +99,126 @@ i {
     color: #4A5565;
     font-size: 50px;
 }
+
+/* ── Custom Dropdown (AdminBuild Style) ── */
+.checklist-dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+}
+
+.checklist-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    padding: 0 15px 0 10px;
+    height: 50px;
+    font-size: 18px;
+    color: #757575;
+    background: #FFFAFA;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+    text-align: left;
+    outline: none;
+    margin-top: 0; /* Reset global button margin */
+    text-transform: none; /* Reset global button text-transform */
+    letter-spacing: normal;
+}
+
+.checklist-trigger.open {
+    background: white;
+}
+
+.checklist-trigger i.left-icon {
+    font-size: 20px;
+    color: #908e8e;
+    margin-right: 5px;
+}
+
+.checklist-trigger i.chevron {
+    font-size: 16px;
+    color: #908e8e;
+    transition: transform 0.25s ease;
+}
+
+.checklist-trigger.open i.chevron {
+    transform: rotate(180deg);
+}
+
+.checklist-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    z-index: 999;
+    padding: 10px 0;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.checklist-panel.open {
+    display: block;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    user-select: none;
+}
+
+.checklist-item:hover { background: #E3F2FD; }
+
+.checklist-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #70D0F4;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.checklist-item span { flex: 1; }
+
+/* ── Image Upload Box ── */
+.upload-box-container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+}
+
+.upload-box {
+    display: block;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #ddd;
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    background: #FFFAFA;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-box:hover { border-color: #70D0F4; background: #f0faff; }
+
+.upload-box i { font-size: 40px; color: #ccc; margin-bottom: 10px; display: block; }
+.upload-box p { font-size: 14px; color: #757575; margin: 0; }
+.upload-box span { font-size: 12px; color: #aaa; }
+.upload-box input[type="file"] { display: none; }
