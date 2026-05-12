@@ -153,11 +153,9 @@ class StudentUser(db.Model):
     ThaiLastName = db.Column(db.NVARCHAR(300))
     EngFirstName = db.Column(db.NVARCHAR(300))
     EngLastName = db.Column(db.NVARCHAR(300))
-    Email = db.Column(db.NVARCHAR(255))
     Telephone = db.Column(db.NVARCHAR(20))
     School = db.Column(db.NVARCHAR(100))
-    Birthday = db.Column(db.NVARCHAR(100))
-    BirthDate = db.Column(db.DATE)
+    Birthday = db.Column(db.DATE) # ใน DB เป็น date
 
 class TeacherUser(db.Model):
     __tablename__ = 'TeacherUser'
@@ -310,11 +308,11 @@ def student_profile():
             'data': {
                 'user_id': user.ID,
                 'username': user.username,
-                'email': student.Email or user.email,
+                'email': user.email, # ใช้ email จากตาราง User แทนเพราะ StudentUser ไม่มีคอลัมน์ Email
                 'full_name': f"{student.ThaiFirstName or ''} {student.ThaiLastName or ''}".strip(),
                 'eng_name': f"{student.EngFirstName or ''} {student.EngLastName or ''}".strip(),
                 'school': student.School,
-                'birthday': student.Birthday,
+                'birthday': str(student.Birthday) if student.Birthday else '',
                 'telephone': student.Telephone
             }
         }), 200
