@@ -7,6 +7,7 @@ import os
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import random
+from threading import Thread
 
 VERIFY_HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -103,6 +104,13 @@ app.config['MAIL_PASSWORD'] = 'kiljfwqdsnecfzse'    # <--- ใส่ App Passwor
 
 mail = Mail(app)
 s = URLSafeTimedSerializer('my_super_secret_key_for_fiet') # รหัสสำหรับเข้ารหัส Token
+
+def send_async_email(app, msg):
+    with app.app_context():
+        try:
+            mail.send(msg)
+        except Exception as e:
+            print(f"Error sending async email: {e}")
 # 1. ตั้งค่าการเชื่อมต่อ SQL Server
 # ==========================================
 SERVER = r'.\SQLEXPRESS' 
@@ -201,10 +209,9 @@ def login():
 
             msg = Message('รหัสยืนยันการเข้าสู่ระบบ (OTP)', sender=app.config['MAIL_USERNAME'], recipients=[user.email])
             msg.body = f"รหัส OTP สำหรับเข้าสู่ระบบของคุณคือ: {otp}\n\nรหัสนี้จะหมดอายุภายใน 5 นาที"
-            try:
-                mail.send(msg)
-            except Exception as e:
-                return jsonify({'status': 'error', 'message': 'ไม่สามารถส่งอีเมล OTP ได้ กรุณาลองใหม่ภายหลัง'}), 500
+            
+            # ส่งอีเมลแบบเบื้องหลัง (Background Thread) เพื่อความรวดเร็ว
+            Thread(target=send_async_email, args=(app, msg)).start()
 
             return jsonify({
                 'status': 'otp_required',
@@ -365,7 +372,8 @@ def register():
         </div>
         """
         
-        mail.send(msg)
+        # ส่งอีเมลแบบเบื้องหลัง (Background Thread) เพื่อความรวดเร็ว
+        Thread(target=send_async_email, args=(app, msg)).start()
 
         return jsonify({'status': 'success', 'message': 'กรุณาเช็คอีเมลเพื่อยืนยันการสมัคร'}), 200
 

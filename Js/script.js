@@ -80,6 +80,16 @@ loginForms.forEach(form => {
         }
 
         try {
+            // แสดงหน้าโหลดขณะกำลังส่ง OTP
+            Swal.fire({
+                title: 'กำลังเข้าสู่ระบบ...',
+                text: 'ระบบกำลังตรวจสอบข้อมูลและส่งรหัส OTP ไปยังอีเมลของคุณ',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
             // สมมติว่ายิงไปหา Python ที่ http://127.0.0.1:5000/login
             const response = await fetch(`${API_BASE_URL}/login`, {
                 method: 'POST',
