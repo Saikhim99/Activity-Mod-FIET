@@ -153,9 +153,11 @@ class StudentUser(db.Model):
     ThaiLastName = db.Column(db.NVARCHAR(300))
     EngFirstName = db.Column(db.NVARCHAR(300))
     EngLastName = db.Column(db.NVARCHAR(300))
+    Email = db.Column(db.NVARCHAR(255))
+    Telephone = db.Column(db.NVARCHAR(20))
     School = db.Column(db.NVARCHAR(100))
     Birthday = db.Column(db.NVARCHAR(100))
-    Telephone = db.Column(db.NVARCHAR(20))
+    BirthDate = db.Column(db.DATE)
 
 class TeacherUser(db.Model):
     __tablename__ = 'TeacherUser'
@@ -304,7 +306,7 @@ def student_profile():
             'data': {
                 'user_id': user.ID,
                 'username': user.username,
-                'email': user.email,
+                'email': student.Email or user.email,
                 'full_name': f"{student.ThaiFirstName or ''} {student.ThaiLastName or ''}".strip(),
                 'eng_name': f"{student.EngFirstName or ''} {student.EngLastName or ''}".strip(),
                 'school': student.School,
@@ -343,11 +345,13 @@ def register():
             UserID=new_user.ID,
             ThaiFirstName=data.get('thai_first_name'),
             ThaiLastName=data.get('thai_last_name'),
-            EngFirstName=data.get('eng_first_name', ''),
-            EngLastName=data.get('eng_last_name', ''),
+            EngFirstName=data.get('eng_first_name'),
+            EngLastName=data.get('eng_last_name'),
+            Email=data.get('email'),
+            Telephone=data.get('telephone'),
             School=data.get('school'),
-            Birthday=data.get('birthday', ''),
-            Telephone=data.get('telephone', '')
+            Birthday=data.get('birthday'),
+            BirthDate=data.get('birthday') # บันทึกทั้งสองคอลัมน์เผื่อไว้
         )
         db.session.add(new_student)
         db.session.commit()
