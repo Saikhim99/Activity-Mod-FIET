@@ -377,7 +377,7 @@ const majorData = {
                 <ul>
                     <li><i class="fa-solid fa-graduation-cap"></i> สาขาครุศาสตร์ไฟฟ้า (เอกไฟฟ้ากำลัง)</li>
                     <li><i class="fa-solid fa-graduation-cap"></i> สาขาครุศาสตร์ไฟฟ้า (เอกคอมพิวเตอร์)</li>
-                    <li><i class="fa-solid fa-graduation-cap"></i> สาขาครุศาสตร์ไฟฟ้า (เอกอิเล็กทรอนิกส์ระบบอัจฉริยะ)</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> สาขาครุศาสตร์ไฟฟ้า (เอกอิเล็กทรอนิกส์)</li>
                 </ul>
             </div>
         `
@@ -408,8 +408,14 @@ const majorData = {
         subtitle: "Educational Communications and Technology",
         images: ["../Photo/ECT.png", "../Photo/ECT2.jpg", "../Photo/ECT.png"],
         description: "หลักสูตรเทคโนโลยีบัณฑิต สาขาวิชาเทคโนโลยีการศึกษาและสื่อสารมวลชน เป็นหลักสูตรผลิตบัณฑิตที่มีความรู้ในภาคทฤษฎีและภาคปฏิบัติ ในศาสตร์เทคโนโลยีการศึกษาและสื่อสารมวลชน ที่เก่งและดี มีจรรยาบรรณในวิชาชีพ",
-        curriculum: `<div class="course-group"><span class="course-title">● ปริญญาตรี เทคโนโลยีบัณฑิต (ทล.บ) 4 ปี</span>
-        <ul><li><i class="fa-solid fa-graduation-cap"></i> สาขาเทคโนโลยีการศึกษาและสื่อสารมวลชน</li></ul></div>`
+        curriculum: `
+            <div class="course-group">
+                <span class="course-title">● ปริญญาตรี เทคโนโลยีบัณฑิต (ทล.บ) 4 ปี</span>
+                <ul>
+                    <li><i class="fa-solid fa-graduation-cap"></i> สาขาเทคโนโลยีการศึกษาและสื่อสารมวลชน</li>
+                </ul>
+            </div>
+        `
     },
     ppt: {
         logo: "../Photo/Logo_PPT.png",
@@ -417,7 +423,13 @@ const majorData = {
         subtitle: "Printing and Packaging Technology",
         images: ["../Photo/PPT1.jpg", "../Photo/PPT2.JPG", "../Photo/PPT3.JPG"],
         description: "หลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาเทคโนโลยีบรรจุภัณฑ์และการพิมพ์ เป็นหลักสูตรผลิตบัณฑิตที่มีความรู้ทางเทคโนโลยีบรรจุภัณฑ์และการพิมพ์ ทั้งในด้านทฤษฎีและปฎิบัติ มีความเข้าใจถึงกระบวนการจัดการผลิตบรรจุภัณฑ์และสิ่งพิมพ์ สามารออกแบบพัฒนาสิ่งพิมพ์บรรจุภัณฑ์ ให้สอดคล้องกับการใช้งานและเทคโนโลยีการผลิตได้ มีทักษะในการแก้ปัญหา พัฒนาผลิตผลงานด้านบรรจุภัณฑ์และสิ่งพิมพ์ โดยการบูรณาการความรู้ต่าง ๆ โดยใช้กระบวนการทางวิทยาศาสตร์ที่คำนึงถึง สิ่งแวดล้อมและความยั่งยืน พัฒนาตนเองให้ทันกับความก้าวหน้าทางเทคโนโลยีรวมถึงที่เกี่ยวข้องกับบรรจุภัณฑ์และการพิมพ์ สามารถทำงานเป็นทีม นำเสนอผลงานได้อย่างมีประสิทธิผล รวมถึงสามารถปรับตัว ให้เข้ากับสภาพการทำงานได้เป็นบัณฑิตที่มีจริยธรรม มีจรรยาบรรณในวิชาการ วิชาชีพ และรับผิดชอบต่อสังคมเพื่อเป็นบุคลากรที่มีคุณภาพ ร่วมพัฒนาวงการอุตสาหกรรมบรรจุภัณฑ์และสิ่งพิมพ์ของประเทศให้ยั่งยืนก้าวไกลต่อไป",
-        curriculum: `<div class="course-group"><span class="course-title">● รอข้อมูลหลักสูตร</span></div>`
+        curriculum: `
+            <div class="course-group">
+                <span class="course-title">● ปริญญาตรี วิทยาศาสตรบัณฑิต (วท.บ.) 4 ปี</span>
+                <ul>
+                    <li><i class="fa-solid fa-graduation-cap"></i> สาขาเทคโนโลยีการพิมพ์และบรรจุภัณฑ์</li>
+                </ul>
+                </div>`
     },
     cmm: {
         logo: "../Photo/Logo_CMM.png",
@@ -425,7 +437,13 @@ const majorData = {
         subtitle: "Computer and Multimedia",
         images: ["../Photo/CMM1.JPG", "../Photo/CMM3.jpg", "../Photo/CMM2.jpg"],
         description: "หลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาวิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย เป็นหลักสูตรที่มุ่งผลิตบัณฑิตให้มีความรู้รอบด้านเทคโนโลยีมัลติมีเดีย มีความสามารถในการเรียนรู้ด้วยตนเองเพื่อรองรับการเปลี่ยนแปลงในอนาคต มีความรับผิดชอบต่อตนเองและสังคม และมีจรรยาบรรณในวิชาชีพ",
-        curriculum: `<div class="course-group"><span class="course-title">● รอข้อมูลหลักสูตร</span></div>`
+        curriculum: `
+            <div class="course-group">
+            <span class="course-title">● ปริญญาตรี วิทยาศาสตรบัณฑิต (วท.บ.) 4 ปี</span>
+            <ul>
+                <li><i class="fa-solid fa-graduation-cap"></i> สาขาวิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย</li>
+            </ul>
+            </div>`
     }
 };
 
