@@ -1,15 +1,15 @@
 -- ==========================================
---  √È“ß∞“π¢ÈÕ¡Ÿ≈ Activity Mod FIET
+--  Activity Mod FIET
 -- ==========================================
 
--- 1.  √È“ß Database
+-- 1. Database
 CREATE DATABASE [Activity Mod FIET];
 GO
 
 USE [Activity Mod FIET];
 GO
 
--- 2.  √È“ßµ“√“ß User À≈—°
+-- 2. User 
 CREATE TABLE dbo.[User] (
     ID          INT IDENTITY(1,1) PRIMARY KEY,
     username    NVARCHAR(100)    NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE dbo.[User] (
 );
 GO
 
--- 3.  √È“ßµ“√“ß StudentUser
+-- 3. StudentUser
 CREATE TABLE dbo.StudentUser (
     UserID         INT           PRIMARY KEY,
     ThaiFirstName  NVARCHAR(300) NULL,
@@ -32,7 +32,7 @@ CREATE TABLE dbo.StudentUser (
 );
 GO
 
--- 4.  √È“ßµ“√“ß TeacherUser
+-- 4. TeacherUser
 CREATE TABLE dbo.TeacherUser (
     UserID     INT           PRIMARY KEY,
     FirstName  NVARCHAR(300) NULL,
@@ -45,20 +45,20 @@ GO
 USE [Activity Mod FIET];
 GO
 
--- ‡æ‘Ë¡∫—≠™’§√Ÿ (is_verified = 1 = ‡¢È“„™È‰¥È‡≈¬)
+-- ‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏ö‡∏±‡∏ç‡∏ä‡∏µ‡∏Ñ‡∏£‡∏π (is_verified = 1 = ‡∏ï‡∏£‡∏ß‡∏à‡∏™‡∏≠‡∏ö‡πÅ‡∏•‡πâ‡∏ß)
 INSERT INTO dbo.[User] (username, password, role, is_verified, email)
 VALUES ('teacher01', 'P@sswOrd', 'teacher', 1, 'teacher01@example.com');
 
 INSERT INTO dbo.TeacherUser (UserID, FirstName, LastName, Major)
-VALUES (SCOPE_IDENTITY(), N' ¡™“¬', N'„®¥’', N'«‘»«°√√¡‰øøÈ“');
+VALUES (SCOPE_IDENTITY(), N'‡∏™‡∏°‡∏®‡∏±‡∏Å‡∏î‡∏¥‡πå', N'‡πÉ‡∏à‡∏î‡∏µ', N'‡∏ß‡∏¥‡∏®‡∏ß‡∏Å‡∏£‡∏£‡∏°‡πÑ‡∏ü‡∏ü‡πâ‡∏≤');
 GO
 
--- ‡æ‘Ë¡∫—≠™’π—°‡√’¬π
+-- ‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏ö‡∏±‡∏ç‡∏ä‡∏µ‡∏ô‡∏±‡∏Å‡πÄ‡∏£‡∏µ‡∏¢‡∏ô
 INSERT INTO dbo.[User] (username, password, role, is_verified, email)
 VALUES ('student01', 'P@sswOrd', 'student', 1, 'student01@example.com');
 
 INSERT INTO dbo.StudentUser (UserID, ThaiFirstName, ThaiLastName, School)
-VALUES (SCOPE_IDENTITY(), N' ¡À≠‘ß', N'√—°‡√’¬π', N'‚√ß‡√’¬πµ—«Õ¬Ë“ß');
+VALUES (SCOPE_IDENTITY(), N'‡∏™‡∏°‡∏´‡∏ç‡∏¥‡∏á', N'‡∏ô‡∏±‡∏Å‡πÄ‡∏£‡∏µ‡∏¢‡∏ô', N'‡πÇ‡∏£‡∏á‡πÄ‡∏£‡∏µ‡∏¢‡∏ô‡∏ï‡∏±‡∏ß‡∏≠‡∏¢‡πà‡∏≤‡∏á');
 GO
 
 USE [Activity Mod FIET];
@@ -72,7 +72,7 @@ GO
 USE [Activity Mod FIET];
 GO
 
--- ‡æ‘Ë¡‡©æ“–§Õ≈—¡πÏ∑’Ë¬—ß‰¡Ë¡’
+-- ‡πÄ‡∏û‡∏¥‡πà‡∏°‡πÄ‡∏â‡∏û‡∏≤‡∏∞‡∏Ñ‡∏≠‡∏•‡∏±‡∏°‡∏ô‡πå‡∏ó‡∏µ‡πà‡∏¢‡∏±‡∏á‡πÑ‡∏°‡πà‡∏°‡∏µ
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID('dbo.StudentUser') AND name = 'EngFirstName')
     ALTER TABLE dbo.StudentUser ADD EngFirstName NVARCHAR(300) NULL;
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID('dbo.StudentUser') AND name = 'EngLastName')

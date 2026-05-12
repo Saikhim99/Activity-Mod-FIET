@@ -38,8 +38,6 @@ if (togglePassword && passwordInput) {
 // ---------------------------------------------------------------
 
 function handleLoginSuccess(userData) {
-    let currentUrl = window.location.href.split('?')[0].split('#')[0];
-    let basePath = currentUrl.substring(0, currentUrl.lastIndexOf('/'));
     let userRole = (userData && userData.role) ? userData.role.toString().toLowerCase().trim() : '';
 
     if (userData) {
@@ -49,11 +47,11 @@ function handleLoginSuccess(userData) {
     }
 
     if (userRole === 'admin') {
-        window.location.href = basePath + "/AdminBuild_Activity.html";
+        window.location.href = '/Html/AdminBuild_Activity.html';
     } else if (userRole === 'teacher') {
-        window.location.href = basePath + "/HomepageTeacher.html";
+        window.location.href = '/Html/HomepageTeacher.html';
     } else {
-        window.location.href = basePath + "/Homepage.html";
+        window.location.href = '/Html/Homepage.html';
     }
 }
 
