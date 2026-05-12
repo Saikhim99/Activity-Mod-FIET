@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    background-color: #C6EBF9;
+    background: linear-gradient(to top, #70D0F4, #CCE4ED);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.input_box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 50px;
+    background: #FFFAFA;
+    border-radius: 15px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.input_box i {
+    font-size: 20px;
+    color: #908e8e;
+    margin-right: 5px;
+}
+
+.input_box input, .input_box select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: #757575; /* ให้สีใกล้เคียงกับ placeholder เดิม */
+}
+
+.input_box input::placeholder {
+    color: #908e8e;
+}
+
+.input_box .fa-lock {
+    position: static;
+    margin-right: 10px;
+    color: #908e8e;
+}
+
+button {
+    background-color: #FFFAFA;
+    color: black;
+    font-size: 14px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 100px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button i {
+    font-size: 18px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h5 {
+    color: #4A5565;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+a {
+    color: #155DFC;
+    text-decoration: none;
+}
+
+i {
+    color: #4A5565;
+    font-size: 50px;
+}

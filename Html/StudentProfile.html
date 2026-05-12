@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Homepage.css">
+    <link rel="stylesheet" href="../css/StudentProfile.css">
+    <title>Student Profile - Activity MOD FIET</title>
+</head>
+<body class="profile-page-body">
+    <header class="navbar">
+        <div class="logo">ACTIVITY MOD FIET</div>
+        <nav class="nav-links">
+            <a href="Homepage.html">หน้าหลัก</a>
+            <a href="Activity.html">กิจกรรม</a>
+            <a href="Major.html">สาขาวิชา</a>
+            <div class="dropdown profile-dropdown-container">
+                <a href="#" class="dropbtn" id="profileMenuBtn"><i class="fa-solid fa-bars menu-icon" style="font-size: 1.2rem;"></i></a>
+                <div class="dropdown-content profile-dropdown" id="profileSidebar">
+                    <a href="#" class="profile-link"><i class="fa-regular fa-circle-user icon-spacing"></i> สมชาย สายสมร</a>
+                    <a href="/Html/Activity_FIET_Webpage.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket icon-spacing"></i> ออกจากระบบ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="student-profile-container">
+        <!-- Top Info Card -->
+        <div class="profile-header-card">
+            <div class="header-banner">
+                <div class="header-title">
+                    <i class="fa-solid fa-user icon-white"></i> โปรไฟล์ผู้เข้าร่วมกิจกรรม
+                </div>
+                <a href="Homepage.html" class="btn-exit"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+            <div class="header-content">
+                <div class="user-info-section">
+                    <h2 class="user-name" id="display-fullname"></h2>
+                    <h3 class="user-eng-name" id="display-engname" style="color: #666; font-size: 16px; margin-top: -5px; margin-bottom: 15px; font-weight: 400;"></h3>
+                    <div class="school-info">
+                        <i class="fa-solid fa-building-columns text-blue"></i>
+                        <span id="display-school"></span>
+                    </div>
+                    
+                    <div class="info-grid mt-20">
+                        <div class="info-item">
+                            <div class="info-icon bg-light-blue text-blue">
+                                <i class="fa-regular fa-calendar"></i>
+                            </div>
+                            <div class="info-text">
+                                <label>วัน / เดือน / ปีเกิด</label>
+                                <span id="display-birthday"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon bg-light-purple text-purple">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="info-text">
+                                <label>เบอร์โทรศัพท์</label>
+                                <span id="display-phone"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon bg-light-green text-green">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <label>อีเมล</label>
+                                <span id="display-email"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-box box-blue">
+                <div class="stat-icon bg-light-blue text-blue">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">กิจกรรมที่เข้าร่วม</div>
+            </div>
+            
+            <div class="stat-box box-orange">
+                <div class="stat-icon bg-light-orange text-orange">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">เกียรติบัตรที่ได้รับ</div>
+            </div>
+            
+        </div>
+
+        <!-- Bottom History Card -->
+        <div class="history-card">
+            <div class="history-card-header">
+                <div class="history-title-group">
+                    <h3 class="history-title">ประวัติการเข้าร่วมกิจกรรม</h3>
+                    <p class="history-subtitle">กิจกรรมที่เข้าร่วมทั้งหมด</p>
+                </div>
+                <div class="badge-total">ทั้งหมด 2 กิจกรรม</div>
+            </div>
+            
+            <div class="history-list" id="activity-history-list">
+                <!-- Item 1 -->
+                <div class="history-item">
+                    <div class="history-img" style="background-image: url('../Photo/fiteland.png');"></div>
+                    <div class="history-details">
+                        <span class="tag bg-light-blue text-blue">โยธา</span>
+                        <h4>กิจกรรม FIET CAMP UNLOCK YOUR FUTURE ปลดล็อคสู่อนาคต</h4>
+                        <div class="history-meta">
+                            <span><i class="fa-regular fa-calendar text-blue"></i> 28 มีนาคม 2570</span>
+                            <span><i class="fa-solid fa-location-dot text-blue"></i> คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+                        </div>
+                    </div>
+                    <div class="history-action">
+                        <button class="btn-download"><i class="fa-solid fa-download"></i> ดาวน์โหลดเกียรติบัตร</button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="history-item">
+                    <div class="history-img" style="background-image: url('../Photo/seriesworkshop2.png');"></div>
+                    <div class="history-details">
+                        <span class="tag bg-light-blue text-blue">ไฟฟ้า</span>
+                        <h4>FIET SERIES WORKSHOP SEASON 2 ค้นหาตัวเองที่ใช่ ของคนเหงาๆ</h4>
+                        <div class="history-meta">
+                            <span><i class="fa-regular fa-calendar text-blue"></i> 13 มิถุนายน 2570</span>
+                            <span><i class="fa-solid fa-location-dot text-blue"></i> คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+                        </div>
+                    </div>
+                    <div class="history-action">
+                        <button class="btn-download"><i class="fa-solid fa-download"></i> ดาวน์โหลดเกียรติบัตร</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h2>
+            </div>
+            <div class="footer-right">
+                <h3>ติดต่อเรา</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> 126 ถนนประชาอุทิศแขวงบางมดเขตทุ่งครุ<br>กรุงเทพมหานคร 10140</li>
+                    <li><i class="fa-solid fa-phone"></i> 02-4709518</li>
+                    <li><i class="fa-solid fa-envelope"></i> fietkmut@gmail.com</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/Js/script.js"></script>
+    <script>
+        // ฟังก์ชันแปลงวันเกิดเป็นภาษาไทยและคำนวณอายุ
+        function formatThaiBirthday(dateString) {
+            if (!dateString) return '';
+            const months = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+            
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return dateString; // Invalid date
+                
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear() + 543;
+                
+                // Calculate age
+                const today = new Date();
+                let age = today.getFullYear() - date.getFullYear();
+                const m = today.getMonth() - date.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < date.getDate())) {
+                    age--;
+                }
+                
+                return `${day} ${month} ${year} ( ${age} ปี )`;
+            } catch (e) {
+                return dateString;
+            }
+        }
+
+        // ฟังก์ชันดึงข้อมูลจาก Database หรือแสดง Mockup (ตามที่ผู้ใช้ร้องขอ)
+        document.addEventListener("DOMContentLoaded", async function() {
+            const userId = localStorage.getItem('user_id');
+            const fullName = localStorage.getItem('user_full_name');
+            
+            // ใช้ข้อมูลชื่อจาก localStorage ที่ Login มา (ถ้ามี)
+            if (fullName && fullName !== 'null' && fullName !== 'undefined') {
+                document.getElementById('display-fullname').textContent = fullName;
+            }
+
+            if (userId) {
+                try {
+                    // API ที่จะให้เขียนเพิ่มใน Data.py หรือใช้ mockup ไปก่อน
+                    const apiBaseUrl = window.API_BASE_URL || 'http://127.0.0.1:5000';
+                    const response = await fetch(`${apiBaseUrl}/api/student/profile?user_id=${userId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === 'success' && data.data) {
+                            const student = data.data;
+                            if (student.full_name) document.getElementById('display-fullname').textContent = student.full_name;
+                            if (student.eng_name) document.getElementById('display-engname').textContent = student.eng_name;
+                            if (student.school) document.getElementById('display-school').textContent = student.school;
+                            if (student.birthday) document.getElementById('display-birthday').textContent = formatThaiBirthday(student.birthday);
+                            if (student.email) document.getElementById('display-email').textContent = student.email;
+                            if (student.telephone) {
+                                // Add dash format if 10 digits
+                                let phone = student.telephone;
+                                if (phone.length === 10) {
+                                    phone = `${phone.substring(0,3)}-${phone.substring(3,6)}-${phone.substring(6)}`;
+                                }
+                                document.getElementById('display-phone').textContent = phone;
+                            }
+                        }
+                    } else {
+                        console.log("No backend API yet, using mockup data.");
+                    }
+                } catch (error) {
+                    console.log("Cannot connect to backend API, using mockup data.");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <base href="/Photo/">
+    <title>Activity MOD FIET</title>
+</head>
+<body>
+    <div class="container" id="container">
+        
+        <div class="form-container sign-up">
+            <div class="img-wrapper">
+                <img src="LOGO_FIET.png" alt="" class="FIET">
+                <img src="ACTIVITY MOD FIET.png" alt="" class="ACTIVITY">
+            </div>
+        </div>
+        <div class="form-container sign-in">
+            <div class="img-wrapper">
+                <img src="LOGO_FIET.png" alt="" class="FIET">
+                <img src="ACTIVITY MOD FIET.png" alt="" class="ACTIVITY">
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                
+                <div class="toggle-panel toggle-left">
+                    <form action="/Html/HomepageTeacher.html" class="login-inputs">
+                        <div class="logo_row">
+
+                            <a href="https://www.kmutt.ac.th/education/curriculum/faculty-of-industrial-education-and-technology/" class="icon">
+                                <img src="FIET.png" alt="FIET" class="logo-fiet">
+                            </a>
+                        </div>
+                        
+                        <div class="input_box">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="User" required 
+                                oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้งาน')" 
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        
+                        <div class="input_box">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="passwordInput" placeholder="Password" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')" 
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+                        </div>
+                        
+                        <button class="login" type="submit">Login</button>
+                    </form>
+                   
+                    <button class="hidden" id="student">student
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </button>
+                </div>
+
+                <div class="toggle-panel toggle-right">
+                    <form action="/Html/Homepage.html" class="login-inputs">
+                        <div class="logo_row">
+
+                            <a href="https://www.kmutt.ac.th/education/curriculum/faculty-of-industrial-education-and-technology/" class="icon">
+                                <img src="FIET.png" alt="FIET" class="logo-fiet">
+                            </a>
+                        </div>
+                        
+                        <div class="input_box">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" 
+                            inputmode="numeric" 
+                            maxlength="17" 
+                            placeholder="ID Card Number" 
+                            required
+                            oninvalid="this.setCustomValidity('กรุณากรอกเลขประจำตัว')" 
+                            oninput="this.setCustomValidity('');formatIDCard(this)">
+                        </div>
+                        
+                        <div class="register">
+                            <a href="/Html/Register.html" class="regis" target="_blank" rel="noopener noreferrer">Register</a>
+                        </div>
+                        <button class="login" type="submit">Login</button>
+                    </form>
+
+                    <button class="hidden" id="officer">Officer
+                        <i class="fa-solid fa-headset"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../Js/script.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Homepage.css">
+    <link rel="stylesheet" href="../css/Profile.css">
+    <title>Profile - Activity MOD FIET</title>
+</head>
+<body class="profile-page-body">
+    <header class="navbar">
+        <div class="logo" style="display: flex; align-items: center; gap: 20px;">
+            <div style="background-color: white; color: #4DA7DB; width: 40px; height: 40px; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem;">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                <span style="font-size: 1.1rem; font-weight: 600;">ระบบจัดการกิจกรรม</span>
+                <span style="font-size: 0.75rem; font-weight: 400; opacity: 0.9;">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar-left">
+            <a href="#" class="sidebar-menu-item">
+                <i class="fa-solid fa-border-all icon"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="sidebar-menu-item">
+                <i class="fa-solid fa-users icon"></i>
+                <span>ผู้สมัคร</span>
+            </a>
+            <div class="sidebar-divider"></div>
+            <a href="Profile.html" class="sidebar-menu-item active">
+                <i class="fa-regular fa-circle-user icon"></i>
+                <span>โปรไฟล์</span>
+            </a>
+            <div class="sidebar-spacer"></div>
+            <a href="HomepageTeacher.html" class="sidebar-menu-item">
+                <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+                <span>กลับหน้าหลัก</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-main-content">
+            <div class="profile-top-grid">
+                <!-- Left column: Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-cover"></div>
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar placeholder-avatar"></div>
+                    </div>
+                    <h2 class="profile-name">นางสาวผกามาศ สารคำ</h2>
+                    <p class="profile-major">ภาควิชาครุศาสตร์ไฟฟ้า</p>
+                    <div class="profile-badges">
+                        <span class="badge-ta"><i class="fa-solid fa-dog"></i> TA</span>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <ul class="profile-contact-list">
+                        <li>
+                            <i class="fa-regular fa-envelope text-orange"></i>
+                            <span>Saikhim999@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone text-orange"></i>
+                            <span>099-3456576</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot text-orange"></i>
+                            <span>กรุงเทพมหานคร</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right column: Info & Stats -->
+                <div class="profile-right-col">
+                    <!-- Personal Info Card -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3 class="info-title">ข้อมูลส่วนตัว</h3>
+                            <button class="btn-edit"><i class="fa-solid fa-pencil"></i> แก้ไขข้อมูล</button>
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>ชื่อ-นามสกุล</label>
+                                <p class="font-bold">ผกามาศ สารคำ</p>
+                            </div>
+                            <div class="info-item">
+                                <!-- empty column in design? the design has Name then Email below it. Let's do 2 columns -->
+                                <label>อีเมล</label>
+                                <p class="underline font-bold">Saikhim999@gmail.com</p>
+                            </div>
+                            <div class="info-item">
+                                <label>เบอร์โทรศัพท์</label>
+                                <p class="font-bold">099-3456576</p>
+                            </div>
+                            <div class="info-item">
+                                <label>ตำแหน่ง</label>
+                                <p class="font-bold">TA ประจำสาขา</p>
+                            </div>
+                            <div class="info-item">
+                                <label>สาขาวิชา</label>
+                                <p class="font-bold">ครุศาสตร์ไฟฟ้า</p>
+                            </div>
+                            <div class="info-item full-width mt-15">
+                                <label>รหัสนักศึกษา/อาจารย์</label>
+                                <p class="font-bold">6608050654</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Row -->
+                    <div class="stats-row">
+                        <div class="stat-card stat-blue">
+                            <div class="stat-icon-circle bg-light-blue">
+                                <i class="fa-regular fa-circle-check text-blue"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h2>2</h2>
+                                <p>กิจกรรมที่เข้าร่วม</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-orange">
+                            <div class="stat-icon-circle bg-light-orange">
+                                <i class="fa-regular fa-calendar text-orange"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h2>13 มี.ค. 2568</h2>
+                                <p>ครั้งล่าสุด</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom row: Activity History -->
+            <div class="history-card">
+                <div class="history-card-header">
+                    <h3 class="history-title">ประวัติการเข้าร่วมกิจกรรม</h3>
+                    <button class="btn-view-all">ทั้งหมด 2 กิจกรรม</button>
+                </div>
+                <p class="history-subtitle">กิจกรรมที่เข้าร่วมทั้งหมด</p>
+                
+                <div class="history-list">
+                    <!-- Item 1 -->
+                    <div class="history-item">
+                        <div class="history-img placeholder-history1"></div>
+                        <div class="history-details">
+                            <span class="tag bg-light-blue text-blue">โยธา</span>
+                            <h4>FIET CAMP UNLOCK YOUR FUTURE ปลดล็อคสู่อนาคต</h4>
+                            <div class="history-meta">
+                                <span><i class="fa-regular fa-calendar text-blue"></i> 28 มีนาคม 2570</span>
+                                <span><i class="fa-solid fa-location-dot text-blue"></i> คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="history-item">
+                        <div class="history-img placeholder-history2"></div>
+                        <div class="history-details">
+                            <span class="tag bg-light-purple text-purple">ไฟฟ้า</span>
+                            <h4>FIET SERIES WORKSHOP SEASON 2 ค้นหาตัวเองที่ใช่ ของคนเหงาๆ</h4>
+                            <div class="history-meta">
+                                <span><i class="fa-regular fa-calendar text-blue"></i> 13 มิถุนายน 2570</span>
+                                <span><i class="fa-solid fa-location-dot text-blue"></i> คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - ผู้สมัคร</title>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Font Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-brand">
+                <i class='bx bxs-graduation logo-icon'></i>
+                <div class="brand-text">
+                    <h1>ระบบจัดการกิจกรรม</h1>
+                    <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+                </div>
+            </div>
+            
+        </header>
+
+        <div class="admin-body">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <ul class="sidebar-menu">
+                    <div class="active-indicator"></div>
+                    <li><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                    <li><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                    <li class="active"><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                    <li><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                    <li><a href="Homepage.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                <div class="dashboard-header">
+                    <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 5px;">จัดการผู้สมัคร</h2>
+                    <p style="color: #555; font-size: 1.1rem;">ตรวจสอบผู้เข้าร่วมกิจกรรม</p>
+                </div>
+
+                <!-- Mini Stat Cards -->
+                <div class="mini-stat-cards">
+                    <div class="mini-stat-card all">
+                        <h3>3</h3>
+                        <p>ทั้งหมด</p>
+                    </div>
+                    <div class="mini-stat-card pending">
+                        <h3>1</h3>
+                        <p>รอดำเนินการ</p>
+                    </div>
+                    <div class="mini-stat-card approved">
+                        <h3>1</h3>
+                        <p>อนุมัติแล้ว</p>
+                    </div>
+                    <div class="mini-stat-card rejected">
+                        <h3>1</h3>
+                        <p>ปฏิเสธ</p>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Bar -->
+                <div class="search-filter-container">
+                    <div class="search-input-wrapper">
+                        <i class='bx bx-search'></i>
+                        <input type="text" placeholder="ค้นหาชื่อ, อีเมล หรือกิจกรรม">
+                    </div>
+                    <i class='bx bx-filter filter-icon'></i>
+                    <select class="status-filter">
+                        <option value="all">สถานะทั้งหมด</option>
+                        <option value="pending">รอดำเนินการ</option>
+                        <option value="approved">อนุมัติแล้ว</option>
+                        <option value="rejected">ปฏิเสธ</option>
+                    </select>
+                </div>
+
+                <!-- Registrant Table -->
+                <div class="activity-table-container">
+                    <div class="table-responsive">
+                        <table class="activity-table registrant-table">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>ติดต่อ</th>
+                                    <th>สถาบัน</th>
+                                    <th>กิจกรรม</th>
+                                    <th>สาขา</th>
+                                    <th>วันที่สมัคร</th>
+                                    <th style="text-align: center;">สถานะ</th>
+                                    <th style="text-align: center;">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td>
+                                        <strong>สมชาย สายสมร</strong>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <a href="mailto:somchai@gmail.com">somchai@gmail.com</a>
+                                            <span>082-828-8888</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        โรงเรียนวัดพุทธบูชา
+                                    </td>
+                                    <td>
+                                        <div class="activity-info">
+                                            <h4 style="font-size: 0.85rem;">กิจกรรม FIET LAND</h4>
+                                            <p style="font-size: 0.75rem;">15 มีนาคม 2024</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        FIET
+                                    </td>
+                                    <td>
+                                        10 มี.ค. 2025
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span class="status-badge yellow-badge">รอดำเนินการ</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons" style="justify-content: center;">
+                                            <button class="btn-icon btn-approve" title="อนุมัติ"><i class='bx bx-check'></i></button>
+                                            <button class="btn-icon btn-reject" title="ปฏิเสธ"><i class='bx bx-x'></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td>
+                                        <strong>สมหญิง ศรีสมร</strong>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <a href="mailto:somying@gmail.com">somying@gmail.com</a>
+                                            <span>012-345-5555</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        โรงเรียนนาหลวง
+                                    </td>
+                                    <td>
+                                        <div class="activity-info">
+                                            <h4 style="font-size: 0.85rem;">กิจกรรม FIET FESTIVAL</h4>
+                                            <p style="font-size: 0.75rem;">12 กุมภาพันธ์ 2024</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        FIET
+                                    </td>
+                                    <td>
+                                        1 ก.พ. 2025
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span class="status-badge badge-green">อนุมัติแล้ว</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons" style="justify-content: center;">
+                                            <button class="btn-icon btn-menu" title="จัดการ"><i class='bx bx-menu'></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td>
+                                        <strong>เดวิด บีเวอร์ ค็อปเปอร์</strong>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <a href="mailto:david@gmail.com">david@gmail.com</a>
+                                            <span>010-248-2816</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        โรงเรียนนานาชาติบางมด
+                                    </td>
+                                    <td>
+                                        <div class="activity-info">
+                                            <h4 style="font-size: 0.85rem;">กิจกรรม FIET FESTIVAL</h4>
+                                            <p style="font-size: 0.75rem;">12 กุมภาพันธ์ 2024</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        FIET
+                                    </td>
+                                    <td>
+                                        11 ก.พ. 2025
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span class="status-badge badge-red">ปฏิเสธ</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons" style="justify-content: center;">
+                                            <button class="btn-icon btn-menu" title="จัดการ"><i class='bx bx-menu'></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</body>
+</html>

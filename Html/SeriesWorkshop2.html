@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Activity.css">
+    <title>FIET Series Workshop 2</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">ACTIVITY MOD FIET</div>
+        <nav class="nav-links">
+            <a href="Homepage.html">หน้าหลัก</a>
+            <a href="Activity.html">กิจกรรม</a>
+            <a href="#">สาขาวิชา</a>
+            <div class="dropdown profile-dropdown-container">
+                <a href="#" class="dropbtn" id="profileMenuBtn"><i class="fa-solid fa-bars menu-icon"
+                        style="font-size: 1.2rem;"></i></a>
+                <div class="dropdown-content profile-dropdown" id="profileSidebar">
+                    <a href="#" class="profile-link"><i class="fa-regular fa-circle-user icon-spacing"></i> สมชาย
+                        สายสมร</a>
+                    <a href="Activity_FIET_Webpage.html" class="logout-link"><i
+                            class="fa-solid fa-arrow-right-from-bracket icon-spacing"></i> ออกจากระบบ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="Activity.html"><i class="fa-solid fa-chevron-left"></i> กลับ</a>
+        </div>
+
+        <!-- Banner Image -->
+        <div class="banner-section">
+            <img src="../Photo/seriesworkshop2.png" alt="FIET SERIES WORKSHOP SEASON 2">
+        </div>
+
+        <!-- Content Section -->
+        <section class="workshop-section">
+            <h1 class="workshop-title">สาขาวิชาที่เบิดรับสมัคร</h1>
+            <p class="workshop-subtitle">เลือกสาขาวิชาที่สนใจการลงทะเบียน</p>
+
+            <!-- Workshop Cards Grid -->
+            <div class="workshop-cards">
+                <!-- Card 1: โยธา -->
+                <div class="workshop-card">
+                    <div class="card-image">
+                        <img src="../Photo/CTE.png" alt="โยธา">
+                    </div>
+                    <div class="card-body">
+                        <div class="workshop-tag">โยธา</div>
+                        <h3 class="workshop-name">กิจกรรม เขียนแบบกันไหมจ๊ะคนดี</h3>
+                        <div class="workshop-info">
+                            <div class="info-item">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>28 มีนาคม 2570</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>คณะศรุศาสตร์อุตสาหกรรมและเทคโนโลยี S13 ชั้น 3</span>
+                            </div>
+                        </div>
+                        <button class="register-btn-workshop" onclick="window.location.href='RegisterWorkshop.html'">สมัคร</button>
+                    </div>
+                </div>
+
+                <!-- Card 2: เครื่องกล -->
+                <div class="workshop-card">
+                    <div class="card-image">
+                        <img src="../Photo/MTE.png" alt="เครื่องกล">
+                    </div>
+                    <div class="card-body">
+                        <div class="workshop-tag">เครื่องกล</div>
+                        <h3 class="workshop-name">กิจกรรม EV&Battery หมุดหมายแห่งอนาคต</h3>
+                        <div class="workshop-info">
+                            <div class="info-item">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>28 มีนาคม 2570</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>คณะศรุศาสตร์อุตสาหกรรมและเทคโนโลยี S13 ชั้น 4</span>
+                            </div>
+                        </div>
+                        <button class="register-btn-workshop">สมัคร</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h2>
+            </div>
+            <div class="footer-right">
+                <h3>ติดต่อเรา</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> 126 ถนนประชาอุทิศแขวงบางมดเขตทุ่งครุ<br>กรุงเทพมหานคร
+                        10140</li>
+                    <li><i class="fa-solid fa-phone"></i> 02-4709518</li>
+                    <li><i class="fa-solid fa-envelope"></i> fietkmut@gmail.com</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/Js/script.js"></script>
+</body>
+
+</html>

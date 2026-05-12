@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - Admin</title>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Font Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-brand">
+                <i class='bx bxs-graduation logo-icon'></i>
+                <div class="brand-text">
+                    <h1>ระบบจัดการกิจกรรม</h1>
+                    <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+                </div>
+            </div>
+            
+        </header>
+
+        <div class="admin-body">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <ul class="sidebar-menu">
+                    <div class="active-indicator"></div>
+                    <li class="active"><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                    <li><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                    <li><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                    <li><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                    <li><a href="Homepage.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                    <p>ภาพรวมการจัดกิจกรรมและผู้สมัคร</p>
+                </div>
+
+                <!-- Stat Cards -->
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class='bx bx-calendar'></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>54</h3>
+                            <p>กิจกรรมทั้งหมด</p>
+                            <small>+3 จากเดือนที่แล้ว</small>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class='bx bx-user-plus'></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>231</h3>
+                            <p>ผู้สมัครใหม่</p>
+                            <small>+12 วันนี้</small>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class='bx bx-pulse'></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>กิจกรรมที่เปิดสมัคร</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Lists -->
+                <div class="recent-sections">
+                    <div class="recent-box">
+                        <div class="box-header">
+                            <h3>กิจกรรมล่าสุด</h3>
+                            <a href="#" class="view-all">ดูทั้งหมด</a>
+                        </div>
+                        <div class="recent-list">
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>กิจกรรม FIET CAMP UNLOCK YOUR FUTURE ปลดล็อคสู่อนาคต</h4>
+                                    <p>10 ตุลาคม 2025</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="count">0/300</span>
+                                    <span class="badge blue-badge">เตรียมเปิด</span>
+                                </div>
+                            </div>
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>กิจกรรม FIET LAND ดินแดนแห่งการเรียนรู้</h4>
+                                    <p>15 มีนาคม 2024</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="count">45/50</span>
+                                    <span class="badge green-badge">เปิดรับ</span>
+                                </div>
+                            </div>
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>กิจกรรม FIET FESTTIVAL 2025 เฟียสเฟสติเวิร์ล</h4>
+                                    <p>12 กุมภาพันธ์ 2024</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="count">150/400</span>
+                                    <span class="badge red-badge">ปิดรับ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-box">
+                        <div class="box-header">
+                            <h3>ผู้สมัครล่าสุด</h3>
+                            <a href="#" class="view-all">ดูทั้งหมด</a>
+                        </div>
+                        <div class="recent-list">
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>สมชาย สายสมร (ตะหลิว)</h4>
+                                    <p>กิจกรรม FIET LAND ดินแดนแห่งการเรียนรู้<br>12 ชั่วโมงที่แล้ว</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="badge yellow-badge">รอดำเนินการ</span>
+                                </div>
+                            </div>
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>สมหญิง ศรีสมร (ปิ่นโต)</h4>
+                                    <p>กิจกรรม FIET FESTTIVAL 2025 เฟียสเฟสติเวิร์ล<br>1 กุมภาพันธ์ 2024</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="badge green-badge">อนุมัติแล้ว</span>
+                                </div>
+                            </div>
+                            <div class="recent-item">
+                                <div class="item-info">
+                                    <h4>เดวิด บีเวอร์ ค็อปเปอร์  (เทเลอร์)</h4>
+                                    <p>กิจกรรม FIET FESTTIVAL 2025 เฟียสเฟสติเวิร์ล<br>11 กุมภาพันธ์ 2024</p>
+                                </div>
+                                <div class="item-status">
+                                    <span class="badge red-badge">ปฏิเสธ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Menu -->
+                <div class="quick-menu-section">
+                    <h3>เมนูด่วน</h3>
+                    <div class="quick-cards">
+                        <a href="AdminPage_Registrant.html" class="quick-card blue-bg">
+                            <i class='bx bx-group'></i>
+                            <span>จัดการผู้สมัคร</span>
+                        </a>
+                        <a href="AdminPage_Activity.html" class="quick-card yellow-bg">
+                            <i class='bx bx-calendar-plus'></i>
+                            <span>สร้างกิจกรรม</span>
+                        </a>
+                        <a href="AdminPage_Info.html" class="quick-card green-bg">
+                            <i class='bx bx-news'></i>
+                            <span>สร้างข่าวสาร</span>
+                        </a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</body>
+</html>

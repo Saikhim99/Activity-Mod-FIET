@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - โปรไฟล์</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-brand">
+                <i class='bx bxs-graduation logo-icon'></i>
+                <div class="brand-text">
+                    <h1>ระบบจัดการกิจกรรม</h1>
+                    <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <ul class="sidebar-menu">
+                    <div class="active-indicator"></div>
+                    <li><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                    <li><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                    <li><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                    <li><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                    <li class="divider"></li>
+                    <li class="active"><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                    <li><a href="Homepage.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+
+                <!-- Page Header -->
+                <div class="dashboard-header" style="margin-bottom: 25px;">
+                    <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 5px;">โปรไฟล์ผู้ดูแลระบบ</h2>
+                    <p style="color: #555; font-size: 1.1rem;">จัดการข้อมูลส่วนตัวและความปลอดภัย</p>
+                </div>
+
+                <!-- Profile Layout -->
+                <div class="profile-layout">
+
+                    <!-- Left: Profile Card -->
+                    <div class="profile-card">
+                        <div class="avatar-wrapper">
+                            <div class="avatar-circle">AD</div>
+                            <button class="avatar-edit-btn" title="เปลี่ยนรูปโปรไฟล์">
+                                <i class='bx bx-camera'></i>
+                            </button>
+                        </div>
+
+                        <div class="profile-name">Admin ระบบ FIET</div>
+                        <span class="profile-role-badge"><i class='bx bx-shield-alt-2'></i> Admin</span>
+                        <div class="profile-email">
+                            <i class='bx bx-envelope' style="color:#4fc3f7;"></i>
+                            admin.fiet@kmutt.ac.th
+                        </div>
+
+                        <div class="profile-divider"></div>
+
+                        <div class="profile-meta-list">
+                            <div class="profile-meta-item">
+                                <i class='bx bx-building'></i>
+                                <span>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+                            </div>
+                            <div class="profile-meta-item">
+                                <i class='bx bx-phone'></i>
+                                <span>02-470-9999</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Edit Forms -->
+                    <div class="profile-right">
+
+                        <!-- Personal Info Section -->
+                        <div class="profile-section-card">
+                            <div class="section-card-header">
+                                <i class='bx bx-user'></i>
+                                <h3>ข้อมูลส่วนตัว</h3>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>ชื่อ</label>
+                                    <input type="text" value="Admin">
+                                </div>
+                                <div class="form-group">
+                                    <label>นามสกุล</label>
+                                    <input type="text" value="ระบบ FIET">
+                                </div>
+                                <div class="form-group">
+                                    <label>อีเมล</label>
+                                    <input type="email" value="admin.fiet@kmutt.ac.th">
+                                </div>
+                                <div class="form-group">
+                                    <label>เบอร์โทรศัพท์</label>
+                                    <input type="tel" value="02-470-9999">
+                                </div>
+                                <div class="form-group">
+                                    <label>ชื่อผู้ใช้ (Username)</label>
+                                    <input type="text" value="admin_fiet" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>ตำแหน่ง</label>
+                                    <input type="text" value="ผู้ดูแลระบบ" readonly>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>หน่วยงาน / คณะ</label>
+                                    <input type="text" value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี (FIET)" readonly>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn-cancel">ยกเลิก</button>
+                                <button class="btn-save"><i class='bx bx-save'></i> บันทึกข้อมูล</button>
+                            </div>
+                        </div>
+
+                        <!-- Change Password Section -->
+                        <div class="profile-section-card">
+                            <div class="section-card-header">
+                                <i class='bx bx-lock-alt'></i>
+                                <h3>เปลี่ยนรหัสผ่าน</h3>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>รหัสผ่านปัจจุบัน</label>
+                                    <input type="password" id="currentPassword" placeholder="กรอกรหัสผ่านปัจจุบัน">
+                                </div>
+                                <div class="form-group">
+                                    <label>รหัสผ่านใหม่</label>
+                                    <input type="password" id="newPassword" placeholder="กรอกรหัสผ่านใหม่">
+                                </div>
+                                <div class="form-group">
+                                    <label>ยืนยันรหัสผ่านใหม่</label>
+                                    <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่านใหม่">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn-cancel">ยกเลิก</button>
+                                <button class="btn-save btn-orange" style="background:#f0932b;"><i class='bx bx-lock-open-alt'></i> เปลี่ยนรหัสผ่าน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

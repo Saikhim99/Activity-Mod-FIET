@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/regis.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Register</title>
+</head>
+
+<body>
+    <i class="fa-solid fa-circle-user"></i>
+    <h1>Register</h1>
+    <form action="Activity_FIET_Webpage.html" onsubmit="submitForm(event)">
+
+        <div class="input_box">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" id="id_card" inputmode="numeric" maxlength="17" placeholder="ID Card Number" required
+                oninvalid="this.setCustomValidity('กรุณากรอกเลขประจำตัว')"
+                oninput="this.setCustomValidity(''); formatIDCard(this)">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="thai_first_name" placeholder="ชื่อ" pattern="^[ก-๙]+$" required
+                oninvalid="this.setCustomValidity(this.value ?  'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกชื่อ')"
+                oninput="this.setCustomValidity('')">
+            <input type="text" id="thai_last_name" placeholder="นามสกุล" pattern="^[ก-๙]+$" required
+                oninvalid="this.setCustomValidity(this.value ?  'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกนามสกุล')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="eng_first_name" placeholder="First Name" pattern="^[a-zA-Z]+$" required
+                oninvalid="this.setCustomValidity(this.value ? 'Please enter English letters only' : 'Please enter your First Name')"
+                oninput="this.setCustomValidity('')">
+            <input type="text" id="eng_last_name" placeholder="Last Name" pattern="^[a-zA-Z]+$" required
+                oninvalid="this.setCustomValidity(this.value ? 'Please enter English  letters only' : 'Please enter your Last Name')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-school-flag"></i>
+            <input type="text" id="school" placeholder="School" required oninvalid="this.setCustomValidity('กรุณากรอกโรงเรียน')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-cake-candles"></i>
+            <input type="text" id="birthday" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')" required
+                oninvalid="this.setCustomValidity('กรุณากรอกวันเกิด')"
+                oninput="this.setCustomValidity(''); this.setCustomValidity('')">
+
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email" required oninvalid="this.setCustomValidity('กรุณากรอก Email')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="telephone" inputmode="numeric" maxlength="12" placeholder="Tel." required
+                oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')"
+                oninput="this.setCustomValidity(''); formatPhoneNumber(this)">
+        </div>
+
+        <button type="submit">ยืนยัน</button>
+
+        <h5>มีบัญชีอยู่แล้ว ? <a href="#" onclick="goLogin(event)">เข้าสู่ระบบ</a></h5>
+    </form>
+
+    <script src="/Js/script.js"></script>
+</body>
+
+</html>

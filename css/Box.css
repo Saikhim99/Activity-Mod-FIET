@@ -1,0 +1,206 @@
+/* ========================================= */
+/*              Modal Layout CSS             */
+/* ========================================= */
+
+.modal-page-wrapper {
+    background-image: url("../Photo/backgroud_M.png");
+    background-size: cover;
+    background-position: center;
+    min-height: calc(100vh - 60px - 200px);
+    position: relative;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    padding: 60px 20px;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-container {
+    background-color: white;
+    width: 100%;
+    max-width: 950px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: fadeInModal 0.4s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 45px;
+    border-bottom: 1.5px solid #f0f0f0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dept-logo {
+    height: 60px;
+    object-fit: contain;
+}
+
+.title-group h1 {
+    font-size: 1.7rem;
+    color: #333;
+    margin: 0;
+    font-weight: 700;
+}
+
+.title-group p {
+    font-size: 0.95rem;
+    color: #888;
+    margin: 3px 0 0 0;
+}
+
+.close-btn {
+    font-size: 2.8rem;
+    color: #333;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff4d4d;
+    transform: scale(1.1);
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 45px;
+}
+
+/* Image Gallery */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+
+.gallery-item.active-border img {
+    border: 4px solid #42B5E1; /* เส้นขอบสีฟ้าตามรูปที่ 3 ในตัวอย่าง */
+}
+
+/* Section Styling */
+.content-section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.gear-icon { color: #F79228; font-size: 1.8rem; }
+.book-icon { color: #3498db; font-size: 1.8rem; }
+
+.description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+    text-indent: 40px;
+}
+
+/* Curriculum Box */
+.curriculum-box {
+    background-color: #f1f8ff;
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 6px solid #3498db;
+}
+
+.course-group {
+    margin-bottom: 25px;
+}
+
+.course-group:last-child {
+    margin-bottom: 0;
+}
+
+.course-title {
+    font-weight: 700;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.course-group ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.course-group ul li {
+    margin-bottom: 10px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-group ul li i {
+    color: #3498db;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+    .gallery-item img {
+        height: 250px;
+    }
+    .modal-body {
+        padding: 25px;
+    }
+    .modal-header {
+        padding: 20px 30px;
+    }
+    .title-group h1 {
+        font-size: 1.3rem;
+    }
+}

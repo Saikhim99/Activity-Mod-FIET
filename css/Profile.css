@@ -1,0 +1,427 @@
+/* Profile Page Styles */
+
+/* Reset some base body settings from Homepage.css if needed */
+body.profile-page-body {
+    background-color: #f0f2f5;
+    overflow: hidden; /* We'll scroll the main content area */
+}
+
+/* Layout */
+.profile-layout {
+    display: flex;
+    height: calc(100vh - 60px); /* Full height minus navbar */
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar-left {
+    width: 260px;
+    background-color: #fafafa;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 30px;
+    text-decoration: none;
+    color: #666;
+    font-size: 1.05rem;
+    font-weight: 400;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-menu-item .icon {
+    width: 30px;
+    font-size: 1.2rem;
+}
+
+.sidebar-menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-menu-item.active {
+    background-color: #e9ecef;
+    color: #333;
+    font-weight: 600;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 15px 30px;
+}
+
+.sidebar-spacer {
+    flex-grow: 1; /* Pushes the next item to the bottom if desired, but image shows it below active. Let's just use margin top */
+    margin-top: 40px; 
+}
+
+/* Main Content Area */
+.profile-main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #eef2f5;
+}
+
+.profile-top-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Profile Card (Left) */
+.profile-card {
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.profile-cover {
+    height: 130px;
+    width: 100%;
+    background-color: #F79228; /* Orange cover */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-avatar-wrapper {
+    margin-top: 65px;
+    z-index: 1;
+    padding: 6px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.profile-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+}
+
+.profile-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #222;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.profile-major {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.profile-badges {
+    margin-bottom: 25px;
+}
+
+.badge-ta {
+    background-color: #e0f2f1;
+    color: #00796b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.profile-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #f0f0f0;
+    margin-bottom: 25px;
+}
+
+.profile-contact-list {
+    list-style: none;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.profile-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.profile-contact-list li:last-child {
+    margin-bottom: 0;
+}
+
+.text-orange {
+    color: #F79228;
+}
+
+/* Personal Info Card */
+.info-card {
+    background-color: white;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.info-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.info-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.btn-edit {
+    background-color: #F79228;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-edit:hover {
+    background-color: #E88118;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 30px;
+    column-gap: 40px;
+}
+
+.info-item label {
+    font-size: 0.85rem;
+    color: #888;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    font-size: 1rem;
+    color: #222;
+    margin: 0;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.font-bold {
+    font-weight: 500;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+/* Stats Row */
+.stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 24px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 2px solid transparent;
+}
+
+.stat-blue {
+    border-color: #90caf9;
+}
+
+.stat-orange {
+    border-color: #ffcc80;
+}
+
+.stat-icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.bg-light-blue { background-color: #e3f2fd; }
+.text-blue { color: #1976d2; }
+.bg-light-orange { background-color: #fff3e0; }
+.bg-light-purple { background-color: #ede7f6; }
+.text-purple { color: #673ab7; }
+
+.stat-content h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.stat-content p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Activity History Card */
+.history-card {
+    background-color: white;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.history-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.btn-view-all {
+    background-color: #bbdefb;
+    color: #1976d2;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-view-all:hover {
+    background-color: #90caf9;
+}
+
+.history-subtitle {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.history-item {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.history-img {
+    width: 180px;
+    height: 110px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+}
+
+.placeholder-history1 {
+    background: linear-gradient(135deg, #1a237e, #3f51b5);
+}
+
+.placeholder-history2 {
+    background: linear-gradient(135deg, #009688, #4db6ac);
+}
+
+.history-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.tag {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.history-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.history-meta {
+    display: flex;
+    gap: 25px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.history-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 1200px) {
+    .profile-top-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-card {
+        padding-bottom: 30px;
+    }
+}

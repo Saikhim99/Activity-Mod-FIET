@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - สร้างกิจกรรมใหม่</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+    <link rel="stylesheet" href="../css/AdminBuild.css">
+</head>
+<body>
+<div class="admin-container">
+
+    <!-- Navbar -->
+    <header class="admin-navbar">
+        <div class="navbar-brand">
+            <i class='bx bxs-graduation logo-icon'></i>
+            <div class="brand-text">
+                <h1>ระบบจัดการกิจกรรม</h1>
+                <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-body">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                <li class="active"><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                <li><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                <li><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                <li class="divider"></li>
+                <li><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                <li><a href="Homepage.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+
+            <!-- Page Header -->
+            <div class="build-header">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                    <a href="AdminPage_Activity.html" style="color:#888; font-size:1.2rem; display:flex; align-items:center; gap:4px;">
+                        <i class='bx bx-arrow-back'></i> กลับ
+                    </a>
+                </div>
+                <h2>สร้างกิจกรรมใหม่</h2>
+                <p>กรอกข้อมูลกิจกรรมเพื่อเปิดรับสมัครผู้เข้าร่วม</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tab-bar">
+                <button class="tab-btn active" onclick="switchTab('tab1', this)" id="tabBtn1">กิจกรรมคณะฯ</button>
+                <button class="tab-btn" onclick="switchTab('tab2', this)" id="tabBtn2">กิจกรรมภายในสาขา</button>
+            </div>
+
+            <!-- ═══════════════ TAB 1 ═══════════════ -->
+            <div class="tab-panel active" id="tab1">
+
+                <!-- General Info -->
+                <div class="form-card">
+                    <div class="form-card-title">ข้อมูลหลักของกิจกรรม</div>
+                    <div class="field-row full mb-16">
+                        <div class="field-group">
+                            <label>ชื่อกิจกรรม <span class="req">*</span></label>
+                            <input type="text" id="activityName" placeholder="เช่น FIET LAND ดินแดนแห่งการเรียนรู้">
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <label>สาขาวิชาที่เข้าร่วม <span class="req">*</span></label>
+                            <div class="checklist-dropdown" id="majorDropdown">
+                                <!-- ส่วนหัวที่กดเพื่อเปิด/ปิด -->
+                                <button type="button" class="checklist-trigger" id="majorTrigger" onclick="toggleChecklist()">
+                                    <span id="majorTriggerText">-- เลือกสาขาวิชา --</span>
+                                    <i class='bx bx-chevron-down' id="majorChevron"></i>
+                                </button>
+                                
+                            <!-- ส่วนแผงรายการที่เป็น Checkbox -->
+                            <div class="checklist-panel" id="majorPanel">
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาครุศาสตร์เครื่องกล" onchange="updateMajors()">
+                                    <span>สาขาครุศาสตร์เครื่องกล</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาครุศาสตร์โยธา" onchange="updateMajors()">
+                                    <span>สาขาครุศาสตร์โยธา</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาครุศาสตร์ไฟฟ้า" onchange="updateMajors()">
+                                    <span>สาขาครุศาสตร์ไฟฟ้า</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาครุศาสตร์อุตสาหการ" onchange="updateMajors()">
+                                    <span>สาขาครุศาสตร์อุตสาหการ</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาเทคโนโลยีและสื่อสารการศึกษา" onchange="updateMajors()">
+                                    <span>สาขาเทคโนโลยีและสื่อสารการศึกษา</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาเทคโนโลยีการพิมพ์และบรรจุภัณฑ์" onchange="updateMajors()">
+                                    <span>สาขาเทคโนโลยีการพิมพ์และบรรจุภัณฑ์</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" value="สาขาวิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย" onchange="updateMajors()">
+                                    <span>สาขาวิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                    <div class="field-group">
+                        <label>รายละเอียดกิจกรรม</label>
+                        <textarea placeholder="อธิบายรายละเอียดกิจกรรม วัตถุประสงค์ และสิ่งที่ผู้เข้าร่วมจะได้รับ"></textarea>
+                    </div>
+                </div>
+
+                <!-- Dynamic sections: สร้างโดย JS ตาม checklist -->
+                <div id="majorSectionsContainer"></div>
+
+                <!-- Open Date & Actions -->
+                <div class="form-card">
+                    <div class="field-row full mb-16">
+                        <div class="form-card-title" id="sectionPassTitle">วันที่ออกเกียรติบัตร</div>
+                        <div class="field-group">
+                            <input type="date" id="openDate">
+                        </div>
+                    </div>
+                    <div class="form-actions" style="border:none; margin-top:0; padding-top:0;">
+                        <a href="AdminPage_Activity.html" class="btn-cancel">ยกเลิก</a>
+                        <button class="btn-submit" onclick="">
+                            บันทึกกิจกรรม
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- /tab1 -->
+
+            <!-- ═══════════════ TAB 2 ═══════════════ -->
+            <div class="tab-panel" id="tab2">
+
+                <div class="form-card">
+                    <div class="form-card-title">ข้อมูลส่วนตัวที่เก็บ</div>
+
+                    <div class="field-row full mb-16">
+                        <div class="field-group">
+                            <label>ชื่อกิจกรรม (สำหรับการสมัคร) <span class="req">*</span></label>
+                            <input type="text" placeholder="ชื่อที่แสดงในหน้าลงทะเบียน">
+                        </div>
+                    </div>
+                    <div class="field-row three mb-16">
+                        <div class="field-group">
+                            <label>จำนวนที่รับสูงสุด <span class="req">*</span></label>
+                            <input type="number" placeholder="เช่น 300" min="1">
+                        </div>
+                        <div class="field-group">
+                            <label>วันที่เริ่ม <span class="req">*</span></label>
+                            <input type="date">
+                        </div>
+                        <div class="field-group">
+                            <label>วันที่สิ้นสุด <span class="req">*</span></label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="field-row mb-16">
+                        <div class="field-group">
+                            <label>สถานที่จัดกิจกรรม <span class="req">*</span></label>
+                            <input type="text" placeholder="เช่น อาคาร FIET ชั้น 3">
+                        </div>
+                        <div class="field-group">
+                            <label>ความจุ (คน) <span class="req">*</span></label>
+                            <input type="number" placeholder="เช่น 500" min="1">
+                        </div>
+                    </div>
+                    <div class="field-row full mb-16">
+                        <div class="field-group">
+                            <label>กลุ่มเป้าหมาย <span class="req">*</span></label>
+                            <select>
+                                <option value="">-- เลือกกลุ่มเป้าหมาย --</option>
+                                <option>นักเรียนมัธยมปลาย</option>
+                                <option>นักเรียนมัธยมต้น</option>
+                                <option>บุคคลทั่วไป</option>
+                                <option>นักศึกษา</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-title">รูปภาพกิจกรรม</div>
+
+                    <div class="field-row mb-16">
+                        <div class="field-group">
+                            <label>รูปกิจกรรมหลัก <span class="req">*</span></label>
+                            <label class="upload-box" for="regImgMain">
+                                <input type="file" id="regImgMain" accept="image/*">
+                                <i class='bx bx-image-add'></i>
+                                <p>คลิกเพื่ออัปโหลดรูปภาพ</p>
+                                <span>PNG, JPG, WEBP สูงสุด 5MB</span>
+                            </label>
+                        </div>
+                        <div class="field-group">
+                            <label>รูปกิจกรรมรอง <span class="req">*</span></label>
+                            <label class="upload-box" for="regImgSub">
+                                <input type="file" id="regImgSub" accept="image/*">
+                                <i class='bx bx-image-alt'></i>
+                                <p>คลิกเพื่ออัปโหลดรูปภาพ</p>
+                                <span>PNG, JPG, WEBP สูงสุด 5MB</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="field-row full mb-16">
+                        <div class="field-group">
+                            <label>วันที่เปิดรับสมัคร <span class="req">*</span></label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="form-actions" style="border:none; margin-top:0; padding-top:0;">
+                        <a href="AdminPage_Activity.html" class="btn-cancel">ยกเลิก</a>
+                        <button class="btn-submit">
+                            <i class='bx bx-save'></i> บันทึกกิจกรรม
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- /tab2 -->
+
+        </main>
+    </div>
+</div>
+
+<script src="../Js/script.js"></script>
+</body>
+</html>

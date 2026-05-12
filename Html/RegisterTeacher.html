@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/regis.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Register</title>
+</head>
+
+<body>
+    <i class="fa-solid fa-circle-user"></i>
+    <h1>Register</h1>
+    <form action="Activity_FIET_Webpage.html" onsubmit="submitForm(event)">
+
+        <div class="input_box">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" id="id_card" inputmode="numeric" maxlength="17" placeholder="รหัสนักศึกษา/อาจารย์" required
+                oninvalid="this.setCustomValidity('กรุณากรอกรหัสนักศึกษา/อาจารย์')"
+                oninput="this.setCustomValidity(''); formatIDCard(this)">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" placeholder="รหัสผ่าน" required
+                oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="thai_first_name" placeholder="ชื่อ" pattern="^[ก-๙]+$" required
+                oninvalid="this.setCustomValidity(this.value ?  'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกชื่อ')"
+                oninput="this.setCustomValidity('')">
+            <input type="text" id="thai_last_name" placeholder="นามสกุล" pattern="^[ก-๙]+$" required
+                oninvalid="this.setCustomValidity(this.value ?  'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกนามสกุล')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-thumbtack"></i>
+            <select id="position" required oninvalid="this.setCustomValidity('กรุณาเลือกตำแหน่ง')" oninput="this.setCustomValidity('')">
+                <option value="" disabled selected hidden>ตำแหน่ง</option>
+                <option value="TA">TA</option>
+                <option value="Teacher">อาจารย์</option>
+            </select>
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-microscope"></i>
+            <select id="major" required oninvalid="this.setCustomValidity('กรุณาเลือกสาขาภาควิชา')" oninput="this.setCustomValidity('')">
+                <option value="" disabled selected hidden>สาขาภาควิชา</option>
+                <option value="MTE">MTE (ครุศาสตร์เครื่องกล)</option>
+                <option value="CTE">CTE (ครุศาสตร์โยธา)</option>
+                <option value="ETE">ETE (ครุศาสตร์ไฟฟ้า)</option>
+                <option value="PTE">PTE (ครุศาสตร์อุตสาหการ)</option>
+                <option value="ECT">ECT (เทคโนโลยีการศึกษาและสื่อสารมวลชน)</option>
+                <option value="PPT">PPT (เทคโนโลยีการพิมพ์และบรรจุภัณฑ์)</option>
+                <option value="CMM">CMM (วิทยาการคอมพิวเตอร์ประยุกต์-มัลติมีเดีย)</option>
+            </select>
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-cake-candles"></i>
+            <input type="text" id="birthday" placeholder="วัน/เดือน/ปีเกิด" onfocus="(this.type='date')" onblur="(this.type='text')" required
+                oninvalid="this.setCustomValidity('กรุณากรอกวัน/เดือน/ปีเกิด')"
+                oninput="this.setCustomValidity(''); this.setCustomValidity('')">
+
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email" required oninvalid="this.setCustomValidity('กรุณากรอก Email')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="input_box">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="telephone" inputmode="numeric" maxlength="12" placeholder="เบอร์โทรศัพท์" required
+                oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')"
+                oninput="this.setCustomValidity(''); formatPhoneNumber(this)">
+        </div>
+
+        <div class="input_box" style="background: transparent;">
+            <i class="fa-solid fa-image" style="background: #FFFAFA; padding: 15px; border-radius: 15px 0 0 15px;"></i>
+            <input type="file" id="profile_picture" accept="image/*" required
+                style="background: #FFFAFA; padding-top: 12px; border-radius: 0 15px 15px 0;"
+                oninvalid="this.setCustomValidity('กรุณาอัปโหลดรูปภาพโปรไฟล์')"
+                oninput="this.setCustomValidity('')">
+        </div>
+
+        <button type="submit">ยืนยัน</button>
+
+        <h5>มีบัญชีอยู่แล้ว ? <a href="#" onclick="goLogin(event)">เข้าสู่ระบบ</a></h5>
+    </form>
+
+    <script src="/Js/script.js"></script>
+</body>
+
+</html>

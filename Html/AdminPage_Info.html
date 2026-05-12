@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - ข่าวสาร</title>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Font Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-brand">
+                <i class='bx bxs-graduation logo-icon'></i>
+                <div class="brand-text">
+                    <h1>ระบบจัดการกิจกรรม</h1>
+                    <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <ul class="sidebar-menu">
+                    <div class="active-indicator"></div>
+                    <li><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                    <li><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                    <li><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                    <li class="active"><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                    <li><a href="#"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                <div class="dashboard-header-flex">
+                    <div class="header-text">
+                        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 5px;">จัดการข่าวสาร</h2>
+                        <p style="color: #555; font-size: 1.1rem;">สร้างและจัดการข่าวประชาสัมพันธ์</p>
+                    </div>
+                    <button class="btn-orange">
+                        + สร้างข่าวใหม่
+                    </button>
+                </div>
+
+                <!-- Search Bar Only (No filter dropdown) -->
+                <div class="search-filter-container">
+                    <div class="search-input-wrapper">
+                        <i class='bx bx-search'></i>
+                        <input type="text" placeholder="ค้นหาข่าวสาร">
+                    </div>
+                </div>
+
+                <!-- News List -->
+                <div class="news-list">
+                    <!-- News Card 1 -->
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <div class="news-meta">
+                                <span class="news-badge badge-orange-solid">การรับสมัคร</span>
+                                <div class="news-date">
+                                    <i class='bx bx-time-five'></i> 25 มี.ค. 2577
+                                </div>
+                            </div>
+                            <div class="news-actions">
+                                <button class="btn-icon btn-edit" title="แก้ไข"><i class='bx bx-edit'></i></button>
+                                <button class="btn-icon btn-delete" title="ลบ"><i class='bx bx-trash'></i></button>
+                            </div>
+                        </div>
+                        <h3 class="news-title">เปิดรับสมัครนักศึกษาใหม่ประจำปีการศึกษา 2577</h3>
+                        <p class="news-desc">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยีเปิดรับนักศึกษาใหม่ในหลักสูตร.....</p>
+                    </div>
+
+                    <!-- News Card 2 -->
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <div class="news-meta">
+                                <span class="news-badge badge-cyan-light">รางวัล</span>
+                                <div class="news-date">
+                                    <i class='bx bx-time-five'></i> 10 มี.ค. 2577
+                                </div>
+                            </div>
+                            <div class="news-actions">
+                                <button class="btn-icon btn-edit" title="แก้ไข"><i class='bx bx-edit'></i></button>
+                                <button class="btn-icon btn-delete" title="ลบ"><i class='bx bx-trash'></i></button>
+                            </div>
+                        </div>
+                        <h3 class="news-title">ประกาศรางวัล “อาจารย์ต้นแบบด้านการสอน”</h3>
+                        <p class="news-desc">รศ.ดร.สันติรัฐ นันสะอาง ได้รับรางวัล “อาจารย์ต้นแบบด้านการสอน พ.ศ.2569”</p>
+                    </div>
+
+                    <!-- News Card 3 -->
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <div class="news-meta">
+                                <span class="news-badge badge-gray-light">ความร่วมมือ</span>
+                                <div class="news-date">
+                                    <i class='bx bx-time-five'></i> 25 มี.ค. 2577
+                                </div>
+                            </div>
+                            <div class="news-actions">
+                                <button class="btn-icon btn-edit" title="แก้ไข"><i class='bx bx-edit'></i></button>
+                                <button class="btn-icon btn-delete" title="ลบ"><i class='bx bx-trash'></i></button>
+                            </div>
+                        </div>
+                        <h3 class="news-title">ลงนามร่วมกับมหาวิทยาลัยสึคุบะ ประเทศญี่ปุ่น</h3>
+                        <p class="news-desc"></p>
+                    </div>
+                    
+                    <!-- News Card 4 -->
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <div class="news-meta">
+                                <span class="news-badge badge-cyan-light">รางวัล</span>
+                                <div class="news-date">
+                                    <i class='bx bx-time-five'></i> 19 มี.ค. 2577
+                                </div>
+                            </div>
+                            <div class="news-actions">
+                                <button class="btn-icon btn-edit" title="แก้ไข"><i class='bx bx-edit'></i></button>
+                                <button class="btn-icon btn-delete" title="ลบ"><i class='bx bx-trash'></i></button>
+                            </div>
+                        </div>
+                        <h3 class="news-title">ประกาศการรับรองคุณภาพด้านการเรียนการสอน</h3>
+                        <p class="news-desc"></p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</body>
+</html>

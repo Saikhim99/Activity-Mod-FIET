@@ -1,0 +1,239 @@
+/* ========================================= */
+/*      Series Workshop 2 Page Styles        */
+/* ========================================= */
+
+/* Back Button */
+.back-button {
+    margin-bottom: 20px;
+}
+
+.back-button a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-button a:hover {
+    color: #42B5E1;
+}
+
+.back-button i {
+    font-size: 0.85rem;
+}
+
+/* Banner Section */
+.banner-section {
+    width: 100%;
+    margin: 20px auto 30px auto;
+    text-align: center;
+}
+
+.banner-section img {
+    width: 100%;
+    /* บังคับความกว้างให้ยืดเต็ม 100% */
+    height: 495px;
+    /* บังคับความสูงไว้ที่ 280px */
+    /* เมื่อตั้งทั้งกว้างและสูงโดยไม่ใส่ object-fit รูปจะถูก "ยืดออกด้านข้าง" (Stretch) ให้เต็มโดยไม่ตัดส่วนไหนทิ้ง */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Workshop Section */
+.workshop-section {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+}
+
+.workshop-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.workshop-subtitle {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+/* Workshop Cards Grid */
+.workshop-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.workshop-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.workshop-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.workshop-card .card-image {
+    width: 260px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.workshop-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.workshop-card .card-body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto 1fr;
+    padding: 0;
+    flex: 1;
+}
+
+.workshop-tag {
+    grid-column: 1 / -1;
+    justify-self: start;
+    background-color: #e0f2fe;
+    color: #0284c7;
+    padding: 6px 24px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.workshop-name {
+    grid-column: 1 / -1;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.workshop-info {
+    grid-column: 1 / 2;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.info-item i {
+    color: #38bdf8;
+    min-width: 16px;
+    text-align: center;
+}
+
+.register-btn-workshop {
+    grid-column: 2 / 3;
+    align-self: end;
+    padding: 8px 32px;
+    background-color: #f59e0b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-btn-workshop:hover {
+    background-color: #d97706;
+    transform: scale(1.05);
+}
+
+.register-btn-workshop:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .workshop-section {
+        padding: 25px;
+    }
+
+    .workshop-title {
+        font-size: 1.4rem;
+    }
+
+    .workshop-card {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .workshop-card .card-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .banner-section {
+        margin: 15px 0 30px 0;
+    }
+
+    .banner-section img {
+        max-height: 200px;
+    }
+
+    .workshop-card .card-body {
+        padding: 15px 0 0 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .workshop-section {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .workshop-title {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .workshop-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .workshop-cards {
+        gap: 15px;
+    }
+
+    .workshop-card .card-image {
+        height: 150px;
+    }
+}
