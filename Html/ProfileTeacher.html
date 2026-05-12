@@ -4,47 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/AdminPage.css">
     <link rel="stylesheet" href="../css/Homepage.css">
     <link rel="stylesheet" href="../css/Profile.css">
     <title>Profile - Activity MOD FIET</title>
 </head>
 <body class="profile-page-body">
-    <header class="navbar">
-        <div class="logo" style="display: flex; align-items: center; gap: 20px;">
-            <div style="background-color: white; color: #4DA7DB; width: 40px; height: 40px; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem;">
-                <i class="fa-solid fa-graduation-cap"></i>
+    <div class="admin-container">
+        <!-- Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-brand">
+                <i class='bx bxs-graduation logo-icon'></i>
+                <div class="brand-text">
+                    <h1>ระบบจัดการกิจกรรม</h1>
+                    <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+                </div>
             </div>
-            <div style="display: flex; flex-direction: column; line-height: 1.2;">
-                <span style="font-size: 1.1rem; font-weight: 600;">ระบบจัดการกิจกรรม</span>
-                <span style="font-size: 0.75rem; font-weight: 400; opacity: 0.9;">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</span>
+            <div class="admin-profile-section">
+                <span id="teacherNameHeader"><i class='bx bx-user-circle'></i> อาจารย์ สมชาย</span>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="profile-layout">
+        <div class="admin-body">
         <!-- Sidebar -->
-        <aside class="sidebar-left">
-            <a href="#" class="sidebar-menu-item">
-                <i class="fa-solid fa-border-all icon"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="sidebar-menu-item">
-                <i class="fa-solid fa-users icon"></i>
-                <span>ผู้สมัคร</span>
-            </a>
-            <div class="sidebar-divider"></div>
-            <a href="Profile.html" class="sidebar-menu-item active">
-                <i class="fa-regular fa-circle-user icon"></i>
-                <span>โปรไฟล์</span>
-            </a>
-            <div class="sidebar-spacer"></div>
-            <a href="HomepageTeacher.html" class="sidebar-menu-item">
-                <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
-                <span>กลับหน้าหลัก</span>
-            </a>
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <div class="active-indicator"></div>
+                <li><a href="#"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                <li><a href="#"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                <li class="divider"></li>
+                <li class="active"><a href="ProfileTeacher.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                <li><a href="HomepageTeacher.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+            </ul>
         </aside>
 
         <!-- Main Content -->
@@ -175,6 +168,8 @@
                 </div>
             </div>
         </main>
-    </div>
+    </div> <!-- Close admin-body -->
+</div> <!-- Close admin-container -->
+    <script src="../Js/script.js"></script>
 </body>
 </html>
