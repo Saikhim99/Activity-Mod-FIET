@@ -2,6 +2,18 @@
 //                           LOGIN
 // ===============================================================
 
+window.moveNext = function(element, event) {
+    if (event.key === "Backspace") {
+        if (element.previousElementSibling) {
+            element.previousElementSibling.focus();
+            element.previousElementSibling.value = '';
+        }
+    } else {
+        if (element.value && element.nextElementSibling) {
+            element.nextElementSibling.focus();
+        }
+    }
+};
 
 const container = document.getElementById('container');
 const officer = document.getElementById('officer');
@@ -102,23 +114,39 @@ loginForms.forEach(form => {
             if (data.status === 'success') {
                 handleLoginSuccess(data.data);
             } else if (data.status === 'otp_required') {
-                // แสดหน้าต่างให้กรอก OTP
+                // แสดหน้าต่างให้กรอก OTP แบบ 6 ช่อง
                 const { value: verifyData } = await Swal.fire({
                     title: 'ยืนยันรหัส OTP',
-                    text: 'กรุณากรอกรหัส 6 หลักที่ส่งไปยังอีเมลของคุณ',
-                    input: 'text',
-                    inputPlaceholder: 'กรอกรหัส OTP',
-                    inputAttributes: {
-                        maxlength: 6,
-                        autocapitalize: 'off',
-                        autocorrect: 'off'
-                    },
+                    html: `
+                        <p style="margin-bottom: 20px; color: #545454; font-size: 16px;">กรุณากรอกรหัส 6 หลักที่ส่งไปยังอีเมลของคุณ</p>
+                        <div class="otp-container">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" onkeyup="moveNext(this, event)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        </div>
+                    `,
                     showCancelButton: true,
                     confirmButtonText: 'ยืนยัน',
                     cancelButtonText: 'ยกเลิก',
                     confirmButtonColor: '#70D0F4',
                     showLoaderOnConfirm: true,
-                    preConfirm: async (code) => {
+                    didOpen: () => {
+                        const firstBox = document.querySelector('.otp-box');
+                        if (firstBox) firstBox.focus();
+                    },
+                    preConfirm: async () => {
+                        const inputs = document.querySelectorAll('.otp-box');
+                        let code = '';
+                        inputs.forEach(input => code += input.value);
+                        
+                        if (code.length !== 6) {
+                            Swal.showValidationMessage('กรุณากรอกรหัส OTP ให้ครบ 6 หลัก');
+                            return false;
+                        }
+
                         try {
                             const verifyResponse = await fetch(`${API_BASE_URL}/verify_otp`, {
                                 method: 'POST',
@@ -820,9 +848,11 @@ document.addEventListener("DOMContentLoaded", function() {
         
         if (fullName && fullName !== 'null' && fullName !== 'undefined') {
             let displayName = fullName;
-            // ถ้าเป็นอาจารย์ และชื่อยังไม่มีคำว่าอาจารย์ ให้เติมเข้าไป
+            // ถ้าเป็นอาจารย์ หรือ TA และชื่อยังไม่มีคำนำหน้า ให้เติมเข้าไป
             if (userRole === 'teacher' && !displayName.startsWith('อาจารย์')) {
                 displayName = 'อาจารย์ ' + displayName;
+            } else if (userRole === 'ta' && !displayName.startsWith('TA')) {
+                displayName = 'TA ' + displayName;
             }
             
             // เก็บ icon แบบเดิมไว้แล้วต่อด้วยชื่อ
@@ -970,7 +1000,8 @@ function updateTeacherProfileUI(teacher) {
     // Update Header Name (for both Homepage and Profile)
     const headerName = document.getElementById('teacherNameHeader');
     if (headerName) {
-        headerName.innerHTML = `<i class="fa-regular fa-circle-user icon-spacing"></i> อาจารย์ ${teacher.full_name}`;
+        let prefix = (teacher.position === 'TA') ? 'TA ' : 'อาจารย์ ';
+        headerName.innerHTML = `<i class="fa-regular fa-circle-user icon-spacing"></i> ${prefix}${teacher.full_name}`;
     }
 
     // Update Profile Page specific fields
@@ -1023,7 +1054,7 @@ function updateTeacherProfileUI(teacher) {
 // Auto-run on page load
 document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
-    if (path.includes('HomepageTeacher.html') || path.includes('ProfileTeacher.html')) {
+    if (path.includes('HomepageTeacher.html') || path.includes('ProfileTeacher.html') || path.includes('ActivityTeacher.html') || path.includes('MajorTeacher.html')) {
         fetchTeacherProfile();
     }
 });

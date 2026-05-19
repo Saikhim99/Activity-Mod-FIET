@@ -365,3 +365,33 @@ input:-webkit-autofill:active {
     .logo-kmutt { width: 80px; }
     .logo-fiet { height: 70px; }
 }
+
+/* =======================================================
+                        OTP MODAL
+   ======================================================= */
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.otp-box {
+    width: 45px;
+    height: 55px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.otp-box:focus {
+    border-color: #70D0F4;
+    box-shadow: 0 0 5px rgba(112, 208, 244, 0.5);
+    background-color: #fff;
+}
