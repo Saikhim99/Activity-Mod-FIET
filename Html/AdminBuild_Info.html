@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการกิจกรรม - สร้างข่าวสารใหม่</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/AdminPage.css">
+    <link rel="stylesheet" href="../css/AdminBuild.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div class="admin-container">
+
+    <!-- Navbar -->
+    <header class="admin-navbar">
+        <div class="navbar-brand">
+            <i class='bx bxs-graduation logo-icon'></i>
+            <div class="brand-text">
+                <h1>ระบบจัดการกิจกรรม</h1>
+                <p>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-body">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="AdminPage_DashBoard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+                <li><a href="AdminPage_Activity.html"><i class='bx bx-calendar'></i> <span>กิจกรรม</span></a></li>
+                <li><a href="AdminPage_Registrant.html"><i class='bx bx-group'></i> <span>ผู้สมัคร</span></a></li>
+                <li class="active"><a href="AdminPage_Info.html"><i class='bx bx-news'></i> <span>ข่าวสาร</span></a></li>
+                <li class="divider"></li>
+                <li><a href="AdminPage_Profile.html"><i class='bx bx-user-circle'></i> <span>โปรไฟล์</span></a></li>
+                <li><a href="Homepage.html"><i class='bx bx-log-out'></i> <span>กลับหน้าหลัก</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+
+            <!-- Page Header -->
+            <div class="build-header">
+                <div class="header-title-container">
+                    <a href="AdminPage_Info.html" class="header-back-btn">
+                        <i class='bx bx-arrow-back'></i>
+                    </a>
+                    <div class="header-text-group">
+                        <h2>สร้างข่าวสารใหม่</h2>
+                        <p class="header-subtitle">กรอกข้อมูลเพื่อสร้างข่าวสารใหม่</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════ FORM CARD 1: ข้อมูลพื้นฐาน ═══════════════ -->
+            <div class="form-card">
+                <div class="form-card-title">ข้อมูลพื้นฐาน</div>
+
+                <!-- ชื่อหัวข้อ -->
+                <div class="field-row full mb-16">
+                    <div class="field-group">
+                        <label>ชื่อหัวข้อ <span class="req">*</span></label>
+                        <input type="text" id="infoTitle" placeholder="เช่น FIET LAND ดินแดนแห่งการเรียนรู้" required>
+                    </div>
+                </div>
+
+                <!-- สถานที่ -->
+                <div class="field-row full mb-16">
+                    <div class="field-group">
+                        <label>สถานที่ <span class="req">*</span></label>
+                        <input type="text" id="infoLocation" placeholder="เช่น มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี ตึก S13" required>
+                    </div>
+                </div>
+
+                <!-- วันที่ & ประเภท -->
+                <div class="field-row mb-16" style="grid-template-columns: 1fr 1fr;">
+                    <div class="field-group">
+                        <label>วันที่ <span class="req">*</span></label>
+                        <input type="date" id="infoDate" required>
+                    </div>
+                    <div class="field-group">
+                        <label>ประเภท <span class="req">*</span></label>
+                        <select id="infoType" required>
+                            <option value="">-- เลือกประเภทข่าวสาร --</option>
+                            <option value="การรับสมัคร" selected>การรับสมัคร</option>
+                            <option value="ประชาสัมพันธ์">ประชาสัมพันธ์</option>
+                            <option value="กิจกรรมสาขา">กิจกรรมสาขา</option>
+                            <option value="ประกาศด่วน">ประกาศด่วน</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- รายละเอียดข่าวสาร -->
+                <div class="field-row full">
+                    <div class="field-group">
+                        <label>รายละเอียดข่าวสาร <span class="req">*</span></label>
+                        <textarea id="infoDetail" placeholder="อธิบายรายละเอียดข่าวสาร" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════ FORM CARD 2: รูปภาพข่าวสาร ═══════════════ -->
+            <div class="form-card">
+                <div class="form-card-title">รูปภาพข่าวสาร <span class="req">*</span></div>
+                <div class="field-row full">
+                    <div class="field-group">
+                        <label class="upload-box" for="infoImgFile">
+                            <input type="file" id="infoImgFile" accept="image/*" required>
+                            <i class='bx bx-image' style="font-size: 3.5rem; color: #aaa;"></i>
+                            <p>คลิกเพื่ออัพโหลดรูปภาพ</p>
+                            <span style="font-size: 0.8rem; color: #888;">PNG หรือ JPG (ขนาดไม่เกิน 5MB)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions" style="border:none; margin-top:20px; padding-top:0;">
+                <a href="AdminPage_Info.html" class="btn-cancel">ยกเลิก</a>
+                <button class="btn-submit" onclick="handleSaveInfo()">
+                    บันทึกข่าวสาร
+                </button>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script>
+    function handleSaveInfo() {
+        const title = document.getElementById('infoTitle').value;
+        if (!title) {
+            Swal.fire({
+                title: "แจ้งเตือน",
+                text: "กรุณากรอกชื่อหัวข้อข่าวสาร",
+                icon: "warning",
+                confirmButtonColor: "#f39c12",
+                confirmButtonText: "ตกลง"
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: "บันทึกสำเร็จ!",
+            text: "บันทึกข่าวสารใหม่เรียบร้อยแล้ว",
+            icon: "success",
+            confirmButtonColor: "#f39c12",
+            confirmButtonText: "ตกลง"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "AdminPage_Info.html";
+            }
+        });
+    }
+</script>
+</body>
+</html>
