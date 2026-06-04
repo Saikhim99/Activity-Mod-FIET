@@ -1,102 +1,400 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/login.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Activity MOD FIET</title>
+    
+    <!-- FontAwesome 6.5.1 CDN for sharp modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- SweetAlert2 CDN for high-end user alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Link to our external custom stylesheet -->
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <div class="container" id="container">
-        
-        <div class="form-container sign-up">
-            <div class="img-wrapper">
-                <img src="/Photo/LOGO_FIET.png" alt="" class="FIET">
-                <img src="/Photo/ACTIVITY MOD FIET.png" alt="" class="ACTIVITY">
-            </div>
-        </div>
-        <div class="form-container sign-in">
-            <div class="img-wrapper">
-                <img src="/Photo/LOGO_FIET.png" alt="" class="FIET">
-                <img src="/Photo/ACTIVITY MOD FIET.png" alt="" class="ACTIVITY">
-            </div>
+
+    <!-- ==========================================================================
+         Header Area (Logo Left, Nav Links Right)
+         ========================================================================== -->
+    <header class="header-container">
+        <!-- Top Left Brand logo -->
+        <div class="brand-logo-container">
+            <img src="../Photo/LOGO_FIET.png" alt="FIET Logo" class="logo-fiet" style="height:  100px;">
         </div>
 
-        <div class="toggle-container">
-            <div class="toggle">
+        <!-- Top Right Navigation links -->
+        <nav class="nav-menu">
+            <div class="page-flip-btn-container">
+                <button class="page-flip-btn" id="pageFlipBtn" title="คลิกเพื่อเข้าสู่หน้าล็อกอินของเจ้าหน้าที่และอาจารย์">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span id="pageFlipBtnText">สำหรับเจ้าหน้าที่ / อาจารย์</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================================================
+         Central 3D Flip Card Container
+         ========================================================================== -->
+    <main class="card-perspective-viewport" id="cardViewport">
+        <div class="login-slide-wrapper">
+            <div class="card-3d-wrapper">
+    
+                <!-- -------------------------------------------------------------
+                  
+                 ------------------------------------------------------------- -->
+            <div class="card-face card-face-front">
+
+                <!-- Center Logo -->
+                <div class="card-header-logo">
+                    <img src="../Photo/LOGO_FIET.png" alt="FIET Icon" class="logo-icon">
+                    <img src="../Photo/ACTIVITY MOD FIET.png" alt="Activity MOD FIET" class="logo-text">
+                </div>
+
+                <!-- Page titles -->
+                <div class="card-title-group">
+                    <h2 class="card-title">เข้าสู่ระบบ</h2>
+                    <p class="card-subtitle">(สำหรับนักเรียนที่มาเข้าร่วมกิจกรรม)</p>
+                </div>
+
+                <!-- Sign-In Form (Student) -->
+                <form action="/Html/Homepage.html" class="card-form login-inputs" id="studentLoginForm">
+                    <div class="form-inputs-group">
+                        <!-- ID Card input field -->
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" 
+                                inputmode="numeric" 
+                                maxlength="17" 
+                                placeholder="ID Card Number" 
+                                required
+                                oninvalid="this.setCustomValidity('กรุณากรอกเลขประจำตัว')" 
+                                oninput="this.setCustomValidity(''); formatIDCard(this)">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+
+                        <!-- Options Row (Remember me & Register Link) -->
+                        <div class="form-options-row">
+                            <a href="#" class="forgot-password-link" id="toRegisterBtn">สมัครสมาชิก (Register)</a>
+                        </div>
+                    </div>
+
+                    <!-- Submit Action Button -->
+                    <button type="submit" class="submit-btn submit-btn-blue">เข้าสู่ระบบ</button>
+                </form>
+            </div>
+
+            <!-- -------------------------------------------------------------
+                 BACK FACE: เข้าสู่ระบบ (เจ้าหน้าที่ / อาจารย์)
+                 ------------------------------------------------------------- -->
+            <div class="card-face card-face-back">
+
+                <!-- Center Logo -->
+                <div class="card-header-logo">
+                    <img src="../Photo/LOGO_FIET.png" alt="FIET Icon" class="logo-icon">
+                    <img src="../Photo/ACTIVITY MOD FIET.png" alt="Activity MOD FIET" class="logo-text">
+                </div>
+
+                <!-- Page titles -->
+                <div class="card-title-group">
+                    <h2 class="card-title">เข้าสู่ระบบ</h2>
+                    <p class="card-subtitle">(เจ้าหน้าที่/อาจารย์)</p>
+                </div>
+
+                <!-- Sign-In Form (Teacher/Officer) -->
+                <form action="/Html/HomepageTeacher.html" class="card-form login-inputs" id="teacherLoginForm">
+                    <div class="form-inputs-group">
+                        <!-- Username input field -->
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" placeholder="User" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้งาน')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+
+                        <!-- Password input field -->
+                        <div class="input-wrapper">
+                            <input type="password" class="input-field" id="teacherPassword" placeholder="Password" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <i class="fa-solid fa-eye-slash password-toggle-icon" id="togglePasswordBtn" onclick="togglePasswordVisibility('teacherPassword', this)"></i>
+                        </div>
+                    </div>
+
+                    <!-- Submit Action Button -->
+                    <button type="submit" class="submit-btn submit-btn-orange">เข้าสู่ระบบ</button>
+                </form>
+            </div>
+
+        </div>
+        </div>
+
+        <!-- ==========================================================================
+             THE REGISTER CARD WRAPPER (Slides up from the bottom)
+             ========================================================================== -->
+        <div class="card-register-wrapper">
+            <div class="card-face card-face-register">
+                <!-- Center Logo -->
+                <div class="card-header-logo">
+                    <img src="../Photo/LOGO_FIET.png" alt="FIET Icon" class="logo-icon">
+                    <img src="../Photo/ACTIVITY MOD FIET.png" alt="Activity MOD FIET" class="logo-text">
+                </div>
+
+                <!-- Page titles -->
+                <div class="card-title-group">
+                    <h2 class="card-title">สมัครสมาชิก</h2>
+                    <p class="card-subtitle">(สำหรับนักเรียน / ผู้เข้าร่วมกิจกรรม)</p>
+                </div>
+
+                <!-- Register Form (Includes all fields from Register.html in a beautiful 2-column layout with no scrollbar) -->
+                <form action="#" class="card-form register-inputs" id="registerForm" onsubmit="submitForm(event)">
+                    <div class="form-inputs-group register-grid">
+                        
+                        <!-- Row 1: ID Card Number (Full Width) -->
+                        <div class="input-wrapper register-grid-full">
+                            <input type="text" class="input-field" 
+                                id="id_card"
+                                inputmode="numeric" 
+                                maxlength="17" 
+                                placeholder="ID Card Number" 
+                                required
+                                oninvalid="this.setCustomValidity('กรุณากรอกเลขประจำตัว')" 
+                                oninput="this.setCustomValidity(''); formatIDCard(this)">
+                            <i class="fa-solid fa-id-card input-icon"></i>
+                        </div>
+
+                        <!-- Row 2: Thai Name / Surname -->
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="thai_first_name" placeholder="ชื่อ (ภาษาไทย)" pattern="^[ก-๙]+$" required
+                                oninvalid="this.setCustomValidity(this.value ? 'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกชื่อ')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="thai_last_name" placeholder="นามสกุล (ภาษาไทย)" pattern="^[ก-๙]+$" required
+                                oninvalid="this.setCustomValidity(this.value ? 'กรุณากรอกเป็นภาษาไทยเท่านั้น' : 'กรุณากรอกนามสกุล')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+
+                        <!-- Row 3: English Name / Surname -->
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="eng_first_name" placeholder="First Name (English)" pattern="^[a-zA-Z]+$" required
+                                oninvalid="this.setCustomValidity(this.value ? 'Please enter English letters only' : 'Please enter your First Name')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="eng_last_name" placeholder="Last Name (English)" pattern="^[a-zA-Z]+$" required
+                                oninvalid="this.setCustomValidity(this.value ? 'Please enter English letters only' : 'Please enter your Last Name')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-user input-icon"></i>
+                        </div>
+
+                        <!-- Row 4: School / Birthday -->
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="school" placeholder="School / โรงเรียน" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกโรงเรียน')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-school-flag input-icon"></i>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="text" class="input-field" id="birthday" placeholder="Birthday / วันเกิด" onfocus="(this.type='date')" onblur="(this.type='text')" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกวันเกิด')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-cake-candles input-icon"></i>
+                        </div>
+
+                        <!-- Row 5: Email / Telephone -->
+                        <div class="input-wrapper">
+                            <input type="email" class="input-field" id="email" placeholder="Email" required
+                                oninvalid="this.setCustomValidity('กรุณากรอก Email')"
+                                oninput="this.setCustomValidity('')">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="tel" class="input-field" id="telephone" inputmode="numeric" maxlength="12" placeholder="Tel. / เบอร์โทรศัพท์" required
+                                oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')"
+                                oninput="this.setCustomValidity(''); formatPhoneNumber(this)">
+                            <i class="fa-solid fa-phone input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Footer options with Register submit and Back to Login button -->
+                    <div class="register-footer">
+                        <button type="submit" class="submit-btn submit-btn-blue">ยืนยันการสมัครสมาชิก</button>
+                        <p class="back-to-login-text">มีบัญชีอยู่แล้ว? <a href="#" id="toLoginBtn">เข้าสู่ระบบ</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         Interactive Logic Script
+         ========================================================================== -->
+    <script>
+
+
+        const cardViewport = document.getElementById('cardViewport');
+        const pageFlipBtn = document.getElementById('pageFlipBtn');
+        const pageFlipBtnText = document.getElementById('pageFlipBtnText');
+
+        // State tracker
+        let isFlipped = false;
+
+        // Card flip activation function
+        function toggleCardFlip() {
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                cardViewport.classList.add('flipped');
+                pageFlipBtnText.textContent = 'สำหรับนักเรียน';
+                pageFlipBtn.title = 'คลิกเพื่อเข้าสู่หน้าล็อกอินของนักศึกษา';
+            } else {
+                cardViewport.classList.remove('flipped');
+                pageFlipBtnText.textContent = 'สำหรับเจ้าหน้าที่ / อาจารย์';
+                pageFlipBtn.title = 'คลิกเพื่อเข้าสู่หน้าล็อกอินของเจ้าหน้าที่และอาจารย์';
+            }
+        }
+
+        // Add event listeners to all flip buttons
+        pageFlipBtn.addEventListener('click', toggleCardFlip);
+
+        // Format ID Card on input
+        function formatIDCard(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 13) value = value.slice(0, 13);
+
+            let formatted = '';
+            if (value.length > 0) {
+                formatted += value.substring(0, 1);
+            }
+            if (value.length > 1) {
+                formatted += '-' + value.substring(1, 5);
+            }
+            if (value.length > 5) {
+                formatted += '-' + value.substring(5, 10);
+            }
+            if (value.length > 10) {
+                formatted += '-' + value.substring(10, 12);
+            }
+            if (value.length > 12) {
+                formatted += '-' + value.substring(12, 13);
+            }
+            input.value = formatted;
+        }
+
+        // Toggle Password visibility
+        function togglePasswordVisibility(fieldId, iconElement) {
+            const passwordField = document.getElementById(fieldId);
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            }
+        }
+
+        // Navigation Link Handler
+        function handleNavigation(destination) {
+            Swal.fire({
+                title: destination,
+                text: `คุณคลิกปุ่มเชื่อมโยงไปยังหน้า: "${destination}"`,
+                icon: 'info',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#0088db',
+                customClass: {
+                    popup: 'swal2-thai'
+                }
+            });
+        }
+
+        // Form Submit handler
+        function handleFormSubmit(event, role) {
+            event.preventDefault();
+            const form = event.target;
+            const inputField = form.querySelector('input[type="text"]');
+            const username = inputField ? inputField.value : '';
+
+            Swal.fire({
+                title: 'เข้าสู่ระบบสำเร็จ!',
+                html: `ยินดีต้อนรับเข้าสู่ระบบ <b>${role === 'student' ? 'นักศึกษา' : 'เจ้าหน้าที่ / อาจารย์'}</b><br><br><b>ผู้ใช้งาน:</b> ${username}`,
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: role === 'student' ? '#0088db' : '#f27800'
+            }).then(() => {
+                // Redirect user to original target page
+                if (role === 'student') {
+                    window.location.href = '/Html/Homepage.html';
+                } else {
+                    window.location.href = '/Html/HomepageTeacher.html';
+                }
+            });
+        }
+
+        // Register Page interactive transition events
+        const toRegisterBtn = document.getElementById('toRegisterBtn');
+        const toLoginBtn = document.getElementById('toLoginBtn');
+
+        toRegisterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.add('show-register');
+        });
+
+        toLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.remove('show-register');
+        });
+
+        // Format Phone Number on input (0xx-xxx-xxxx)
+        function formatPhoneNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            
+            let formatted = '';
+            if (value.length > 0) {
+                formatted += value.substring(0, 3);
+            }
+            if (value.length > 3) {
+                formatted += '-' + value.substring(3, 6);
+            }
+            if (value.length > 6) {
+                formatted += '-' + value.substring(6, 10);
+            }
+            input.value = formatted;
+        }
+
+        // Register Form submission with SweetAlert2 and Auto-Fill Login
+        function handleRegisterSubmit(event) {
+            event.preventDefault();
+            const idCard = document.getElementById('reg_id_card').value;
+            const firstName = document.getElementById('reg_first_name').value;
+            
+            Swal.fire({
+                title: 'สมัครสมาชิกสำเร็จ!',
+                html: `ยินดีต้อนรับคุณ <b>${firstName}</b> เข้าสู่ระบบบริการข้อมูลกิจกรรม FIET<br><br><b>เลขประจำตัวบัตรประชาชน:</b> ${idCard}`,
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#0088db'
+            }).then(() => {
+                // Return to login card
+                document.body.classList.remove('show-register');
                 
-                <div class="toggle-panel toggle-left">
-                    <form action="/Html/HomepageTeacher.html" class="login-inputs">
-                        <div class="logo_row">
-
-                            <a href="https://www.kmutt.ac.th/education/curriculum/faculty-of-industrial-education-and-technology/" class="icon">
-                                <img src="/Photo/FIET.png" alt="FIET" class="logo-fiet">
-                            </a>
-                        </div>
-                        
-                        <div class="input_box">
-                            <i class="fa-solid fa-user"></i>
-                            <input type="text" placeholder="User" required 
-                                oninvalid="this.setCustomValidity('กรุณากรอกชื่อผู้ใช้งาน')" 
-                                oninput="this.setCustomValidity('')">
-                        </div>
-                        
-                        <div class="input_box">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="passwordInput" placeholder="Password" required
-                                oninvalid="this.setCustomValidity('กรุณากรอกรหัสผ่าน')" 
-                                oninput="this.setCustomValidity('')">
-                            <i class="fa-solid fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
-                        </div>
-                        
-                        <button class="login" type="submit">Login</button>
-                    </form>
-                   
-                    <button class="hidden" id="student">student
-                        <i class="fa-solid fa-child-reaching"></i>
-                    </button>
-                </div>
-
-                <div class="toggle-panel toggle-right">
-                    <form action="/Html/Homepage.html" class="login-inputs">
-                        <div class="logo_row">
-
-                            <a href="https://www.kmutt.ac.th/education/curriculum/faculty-of-industrial-education-and-technology/" class="icon">
-                                <img src="/Photo/FIET.png" alt="FIET" class="logo-fiet">
-                            </a>
-                        </div>
-                        
-                        <div class="input_box">
-                            <i class="fa-solid fa-user"></i>
-                            <input type="text" 
-                            inputmode="numeric" 
-                            maxlength="17" 
-                            placeholder="ID Card Number" 
-                            required
-                            oninvalid="this.setCustomValidity('กรุณากรอกเลขประจำตัว')" 
-                            oninput="this.setCustomValidity('');formatIDCard(this)">
-                        </div>
-                        
-                        <div class="register">
-                            <a href="/Html/Register.html" class="regis" target="_blank" rel="noopener noreferrer">Register</a>
-                        </div>
-                        <button class="login" type="submit">Login</button>
-                    </form>
-
-                    <button class="hidden" id="officer">Officer
-                        <i class="fa-solid fa-headset"></i>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script src="/Js/script.js?v=7"></script>
+                // Proactively autofill the student login card input
+                const studentIdInput = document.querySelector('#studentLoginForm input[type="text"]');
+                if (studentIdInput) {
+                    studentIdInput.value = idCard;
+                }
+            });
+        }
+    </script>
+<script src="/Js/script.js?v=7"></script>
 </body>
 </html>
+

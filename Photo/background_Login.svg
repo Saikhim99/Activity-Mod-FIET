@@ -1,0 +1,49 @@
+<svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg-grad" cx="100%" cy="0%" r="150%">
+      <stop offset="0%" stop-color="#e0f2fe" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </radialGradient>
+    <radialGradient id="glow">
+      <stop offset="0%" stop-color="rgba(0, 136, 219, 0.12)" />
+      <stop offset="70%" stop-color="rgba(0, 136, 219, 0)" />
+    </radialGradient>
+    <pattern id="dot-pattern" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="3" fill="#cbd5e1" />
+    </pattern>
+    <linearGradient id="blue-gradient-soft" x1="0" y1="220" x2="230" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="blue-gradient-main" x1="0" y1="280" x2="290" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+  <!-- Soft top-right blurred gradient glow -->
+  <circle cx="2020" cy="100" r="300" fill="url(#glow)" />
+
+  <!-- Left Dotted Grid Pattern SVG -->
+  <rect x="40" y="220" width="96" height="144" fill="url(#dot-pattern)" opacity="0.45" />
+
+  <!-- Right Dotted Grid Pattern SVG -->
+  <rect x="1784" y="686" width="96" height="144" fill="url(#dot-pattern)" opacity="0.45" />
+
+  <!-- Bottom Left Curved Waves SVG -->
+  <g transform="translate(-50, 680) scale(0.9)" opacity="0.9">
+    <path d="M 0,250 C 130,220 220,380 230,500 L 0,500 Z" fill="url(#blue-gradient-soft)" opacity="0.4"/>
+    <path d="M 0,280 C 180,310 270,410 290,500 L 0,500 Z" fill="url(#blue-gradient-main)"/>
+    <path d="M 0,290 C 170,320 255,420 275,500" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <circle cx="178" cy="365" r="7" fill="#0066cc" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+
+  <!-- Bottom Right Orange Line Curve and Dot SVG -->
+  <g transform="translate(1590, 750) scale(0.875)" opacity="0.85">
+    <path d="M 400,80 C 310,120 180,240 200,400" stroke="#f27800" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <circle cx="218" cy="318" r="6" fill="#f27800" />
+  </g>
+</svg>

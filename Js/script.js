@@ -75,7 +75,7 @@ loginForms.forEach(form => {
         // ถ้าอยากใช้เป็น UI Demo เฉยๆ โดยไม่ต่อ Python ให้เอาโค้ดใน try...catch ออก
         e.preventDefault(); 
 
-        const inputs = this.querySelectorAll('input');
+        const inputs = this.querySelectorAll('input:not([type="checkbox"])');
         let username = '';
         let password = '';
         
@@ -112,7 +112,15 @@ loginForms.forEach(form => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                handleLoginSuccess(data.data);
+                Swal.fire({
+                    title: 'สำเร็จ!',
+                    text: 'เข้าสู่ระบบเรียบร้อยแล้ว',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    handleLoginSuccess(data.data);
+                });
             } else if (data.status === 'otp_required') {
                 // แสดหน้าต่างให้กรอก OTP แบบ 6 ช่อง
                 const { value: verifyData } = await Swal.fire({
@@ -258,7 +266,7 @@ async function submitForm(event) {
                 allowOutsideClick: false 
             }).then((res) => {
                 if (res.isConfirmed) {
-                    window.close(); // กลับไปหน้าล็อกอิน
+                    document.body.classList.remove('show-register'); // กลับไปหน้าล็อกอิน
                 }
             });
         } else {

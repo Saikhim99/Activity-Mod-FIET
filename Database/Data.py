@@ -200,30 +200,49 @@ def login():
             if hasattr(user, 'is_verified') and user.is_verified == False:
                 return jsonify({'status': 'error', 'message': 'กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ (เช็คกล่องจดหมายของคุณ)'}), 401
 
-            if not user.email:
-                return jsonify({'status': 'error', 'message': 'บัญชีนี้ไม่มีอีเมลในระบบ ไม่สามารถส่งรหัส OTP ได้'}), 401
+            if user.role == 'student':
+                if not user.email:
+                    return jsonify({'status': 'error', 'message': 'บัญชีนี้ไม่มีอีเมลในระบบ ไม่สามารถส่งรหัส OTP ได้'}), 401
 
-            # ---------------------------------------------
-            # สร้าง OTP และส่งไปยังอีเมล
-            # ---------------------------------------------
-            otp = str(random.randint(100000, 999999))
-            user.otp_code = otp
-            user.otp_expiry = datetime.now() + timedelta(minutes=5)
-            db.session.commit()
+                # ---------------------------------------------
+                # สร้าง OTP และส่งไปยังอีเมล
+                # ---------------------------------------------
+                otp = str(random.randint(100000, 999999))
+                user.otp_code = otp
+                user.otp_expiry = datetime.now() + timedelta(minutes=5)
+                db.session.commit()
 
-            msg = Message('รหัสยืนยันการเข้าสู่ระบบ (OTP)', sender=app.config['MAIL_USERNAME'], recipients=[user.email])
-            msg.body = f"รหัส OTP สำหรับเข้าสู่ระบบของคุณคือ: {otp}\n\nรหัสนี้จะหมดอายุภายใน 5 นาที"
-            
-            # ส่งอีเมลแบบเบื้องหลัง (Background Thread) เพื่อความรวดเร็ว
-            Thread(target=send_async_email, args=(app, msg)).start()
+                msg = Message('รหัสยืนยันการเข้าสู่ระบบ (OTP)', sender=app.config['MAIL_USERNAME'], recipients=[user.email])
+                msg.body = f"รหัส OTP สำหรับเข้าสู่ระบบของคุณคือ: {otp}\n\nรหัสนี้จะหมดอายุภายใน 5 นาที"
+                
+                # ส่งอีเมลแบบเบื้องหลัง (Background Thread) เพื่อความรวดเร็ว
+                Thread(target=send_async_email, args=(app, msg)).start()
 
-            return jsonify({
-                'status': 'otp_required',
-                'message': 'ระบบได้ส่งรหัส OTP ไปยังอีเมลของคุณแล้ว',
-                'data': {
-                    'user_id': user.ID
-                }
-            }), 200
+                return jsonify({
+                    'status': 'otp_required',
+                    'message': 'ระบบได้ส่งรหัส OTP ไปยังอีเมลของคุณแล้ว',
+                    'data': {
+                        'user_id': user.ID
+                    }
+                }), 200
+            else:
+                # สำหรับอาจารย์ ไม่ต้องใช้ OTP
+                user_info = None
+                if user.role == 'teacher':
+                    teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
+                    if teacher:
+                        user_info = f"{teacher.FirstName} {teacher.LastName}"
+
+                return jsonify({
+                    'status': 'success',
+                    'message': 'เข้าสู่ระบบสำเร็จ',
+                    'data': {
+                        'user_id': user.ID,
+                        'username': user.username,
+                        'role': user.role,
+                        'full_name': user_info
+                    }
+                }), 200
         else:
             return jsonify({'status': 'error', 'message': 'Username หรือ Password ไม่ถูกต้อง'}), 401
             

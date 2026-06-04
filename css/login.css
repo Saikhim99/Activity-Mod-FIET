@@ -1,369 +1,885 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* 
+   ==========================================================================
+   Activity MOD FIET - Premium Light Sky Theme Stylesheet with Scrolling Stars
+   ==========================================================================
+   Theme Colors:
+   - Primary FIET Blue: #0088db (RGB 0, 136, 219)
+   - Secondary FIET Orange: #f27800 (RGB 242, 120, 0)
+   - Neutral Dark: #1e293b (Slate 800)
+   - Neutral Medium: #64748b (Slate 500)
+   - Neutral Light: #f8fafc (Slate 50)
+   - Accent Soft Blue: #e0f2fe (Sky 100)
+   ==========================================================================
+*/
 
-*{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #0088db;
+    --primary-blue-hover: #0077c2;
+    --primary-blue-light: rgba(0, 136, 219, 0.1);
+    --secondary-orange: #f27800;
+    --secondary-orange-hover: #d96c00;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --border-color: #cbd5e1;
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.01);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
+    --font-thai: 'Sarabun', sans-serif;
+    --font-eng: 'Inter', sans-serif;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Kanit', sans-serif;
+    font-family: var(--font-thai);
 }
 
-img {
-    max-width: 100%;
-    height: auto; 
-    display: block; 
-}
-
-.FIET { width: 400px; margin-bottom: 20px; }
-.ACTIVITY { width: 400px; }
-.logo-kmutt { width: 65px; }
-.logo-fiet { height: 65px; width: auto; }
-
-body{
-    background: url(/Photo/background.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.container{
-    background-color: #C6EBF9;
-    background: linear-gradient(to top,#70D0F4,#CCE4ED);
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    position: relative;
+html, body {
+    height: 100%;
+    width: 100%;
     overflow: hidden;
-    width: 70%; 
-    max-width: 100%;
-    min-height: 700px;
 }
 
-.container button.hidden{
-    background-color: #FFFAFA;
-    color: black;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-#student{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    margin: 0;
-}
-
-#officer{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    margin: 0;
-}
-
-.img-wrapper, .login-inputs {
-    background-color: transparent;
+body {
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 30px;
-    padding: 0 40px;
-    height: 100%;
-    width: 100%;
-}
-
-.input_box {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 50px;
-    background: #FFFAFA;
-    border-radius: 15px;
-    display: flex;
     align-items: center;
-    padding-left: 10px; 
+    position: relative;
+    color: var(--text-dark);
+    background: url('/Photo/background_Login.svg') no-repeat center center fixed;
+    background-size: cover;
 }
 
-.input_box i:first-child:not(#togglePassword) {
-    position: absolute;
-    left: 12px;
-    z-index: 2;
-    font-size: 20px;
-    color: #908e8e;
-}
+/* ==========================================================================
+   Background Art & Blobs
+   ========================================================================== */
 
-button.login {
-    background-color: #FFFAFA;
-    color: black;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-top: 10px;
-}
-button i{
-    font-size: 18px;
-}
-.input_box input {
-    flex: 1;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    padding-left: 40px;
-}
-
-.input_box input::placeholder {
-    color: #908e8e;
-}
-
-/* แก้ไขสีพื้นหลังเวลาเบราว์เซอร์เติมข้อมูลอัตโนมัติ (Autofill) */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #FFFAFA inset !important;
-    -webkit-text-fill-color: #757575 !important;
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-.input_box .fa-lock {
-    position: static;
-    margin-right: 10px;
-    color: #908e8e;
-}
-
-#togglePassword {
-    margin-right: 15px;
-    color: #908e8e;
-    font-size: 20px;
-    transition: color 0.3s;
-}
-
-#togglePassword:hover {
-    color: #70D0F4;
-}
-
-
-
-.form-container{
+/* Background Blobs */
+.bg-decorations {
     position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    transition: all 0.6s ease-in-out;
+    overflow: hidden;
+    z-index: 2; /* Sits directly above stars background but behind card */
+    pointer-events: none;
 }
 
-.sign-in{
+/* Bottom Left Wave/Blob SVG Styling */
+.wave-left {
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 450px;
+    height: auto;
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 30px rgba(56, 189, 248, 0.15));
+    animation: floating-wave 12s ease-in-out infinite alternate;
+}
+
+/* Top Right Soft Gradient Light */
+.gradient-right {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 136, 219, 0.12) 0%, rgba(0, 136, 219, 0) 70%);
+    border-radius: 50%;
+}
+
+/* Orange Accent Curve & Dot Bottom Right */
+.accent-orange-path {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 350px;
+    height: auto;
+    opacity: 0.85;
+}
+
+/* Dotted Grid Pattern overlays */
+.dotted-pattern {
+    position: absolute;
+    width: 96px;
+    height: 144px;
+    opacity: 0.45;
+}
+
+.dotted-pattern.left-top {
+    left: 40px;
+    top: 220px;
+}
+
+.dotted-pattern.right-middle {
+    right: 40px;
+    bottom: 250px;
+}
+
+@keyframes floating-wave {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(15px) scale(1.03); }
+}
+
+/* ==========================================================================
+   Header / Navigation Section
+   ========================================================================== */
+
+.header-container {
+    position: absolute;
+    top: 0;
     left: 0;
-    width: 50%;
+    width: 100%;
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Left Brand Logo */
+.brand-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo-container img {
+    height: 48px;
+    object-fit: contain;
+}
+
+.brand-logo-container img.logo-fiet {
+    height: 48px;
+}
+
+.brand-logo-container img.logo-text {
+    height: 20px;
+    margin-top: 5px;
+}
+
+/* Right Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 500;
+    transition: var(--transition-fast);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.nav-link i {
+    font-size: 17px;
+    color: var(--text-dark);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--primary-blue);
+}
+
+.nav-link:hover i {
+    color: var(--primary-blue);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Page Flip Trigger Button (Top Right)
+   ========================================================================== */
+
+.page-flip-btn-container {
+    z-index: 11;
+}
+
+.page-flip-btn {
+    background: #ffffff;
+    border: 1px solid rgba(0, 136, 219, 0.2);
+    color: var(--primary-blue);
+    font-family: var(--font-thai);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 136, 219, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.page-flip-btn i {
+    font-size: 15px;
+    transition: transform 0.6s ease;
+}
+
+.page-flip-btn:hover {
+    background: var(--primary-blue);
+    color: #ffffff;
+    border-color: var(--primary-blue);
+    box-shadow: 0 6px 20px rgba(0, 136, 219, 0.2);
+    transform: translateY(-2px);
+}
+
+.page-flip-btn:hover i {
+    transform: rotate(180deg);
+}
+
+.page-flip-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Central 3D Flip Card Widget
+   ========================================================================== */
+
+.card-perspective-viewport {
+    perspective: 1500px;
+    z-index: 5;
+    position: relative;
+    width: 480px;
+    height: 600px;
+    margin-top: 60px; /* space for header spacing */
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Inner Card that rotates */
+.card-3d-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--card-shadow);
+    border-radius: 28px;
+}
+
+/* Flip Trigger Class */
+.card-perspective-viewport.flipped .card-3d-wrapper {
+    transform: rotateY(180deg);
+}
+
+/* Card Faces Styles - Premium White Glassmorphism */
+.card-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    backface-visibility: hidden;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+}
+
+/* Front Face */
+.card-face-front {
     z-index: 2;
+    transform: rotateY(0deg);
 }
 
-.container.active .sign-in{
-    transform: translateX(100%);
-}
-
-.sign-up{
-    left: 0;
-    width: 50%;
-    opacity: 0;
+/* Back Face */
+.card-face-back {
+    transform: rotateY(180deg);
     z-index: 1;
 }
 
-.container.active .sign-up{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: move 0.6s;
-}
-
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
-    }
-    50%, 100%{
-        opacity: 1;
-        z-index: 5;
-    }
-}
-
-.toggle-container{
+/* Glassmorphism accent background reflections on card */
+.card-face::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(24, 144, 255, 0.015) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
 }
 
-.container.active .toggle-container{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.logo_row {
-    display: flex;  
+/* Corner Flip Button inside Card (Top Right of Card) */
+.card-flip-corner-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 80px;
-    gap: 30px;
+    transition: var(--transition-smooth);
+    z-index: 20;
+}
+
+.card-flip-corner-btn i {
+    font-size: 14px;
+    transition: transform 0.4s ease;
+}
+
+.card-flip-corner-btn:hover {
+    background-color: var(--primary-blue-light);
+    color: var(--primary-blue);
+    border-color: rgba(0, 136, 219, 0.2);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.card-flip-corner-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================================================
+   Inside Card Design Components
+   ========================================================================== */
+
+/* Logo & Headers inside Card */
+.card-header-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.card-header-logo img.logo-icon {
+    height: 52px;
+    object-fit: contain;
+}
+
+.card-header-logo img.logo-text {
+    height: 18px;
+    object-fit: contain;
+}
+
+.card-title-group {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Forms */
+.card-form {
     width: 100%;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-grow: 1;
 }
 
-.register {
-    width: 100%;           
-    max-width: 400px;
-    text-align: right;     
+.form-inputs-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-.register a {
-    color: black;        
+/* Input Fields Wrapper */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper i.input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+    transition: var(--transition-fast);
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px 18px 15px 48px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    font-family: var(--font-thai);
+    font-size: 15px;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    transition: var(--transition-fast);
+    outline: none;
+}
+
+/* Password Toggle Icon on Right */
+.input-wrapper .password-toggle-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    transition: var(--transition-fast);
+}
+
+.input-wrapper .password-toggle-icon:hover {
+    color: var(--primary-blue);
+}
+
+/* Input Focus States */
+.input-field:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(0, 136, 219, 0.08);
+}
+
+.input-field:focus + i.input-icon {
+    color: var(--primary-blue);
+}
+
+/* Remember & Forgot Password Section */
+.form-options-row {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+/* Custom Checkbox */
+.remember-me-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.remember-me-checkbox:hover {
+    color: var(--text-dark);
+}
+
+.remember-me-checkbox input[type="checkbox"] {
+    display: none; /* Hide standard */
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: var(--transition-fast);
+    background-color: #ffffff;
+}
+
+.remember-me-checkbox input[type="checkbox"]:checked + .custom-checkbox {
+    border-color: var(--primary-blue);
+    background-color: var(--primary-blue);
+}
+
+.remember-me-checkbox input[type="checkbox"]:checked + .custom-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password-link {
+    color: var(--primary-blue);
     text-decoration: none;
-    font-size: 12px;      
     font-weight: 500;
+    transition: var(--transition-fast);
 }
 
-.register a:hover {
+.forgot-password-link:hover {
+    color: var(--primary-blue-hover);
     text-decoration: underline;
 }
 
-.toggle{
-    background-color: #C6EBF9;
-    height: 100%;
-    color: #fff;
-    position: relative;
-    left: -100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+/* Action Buttons */
+.submit-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 30px;
+    font-family: var(--font-thai);
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 12px rgba(0, 136, 219, 0.15);
+    margin-top: auto;
 }
 
-.container.active .toggle{
-    transform: translateX(50%);
+/* Front Sign In Button - Blue */
+.submit-btn-blue {
+    background-color: var(--primary-blue);
 }
 
-.toggle-panel{
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    text-align: center;
+.submit-btn-blue:hover {
+    background-color: var(--primary-blue-hover);
+    box-shadow: 0 6px 20px rgba(0, 136, 219, 0.25);
+    transform: translateY(-2px);
+}
+
+.submit-btn-blue:active {
+    transform: translateY(0);
+}
+
+/* Back Sign Up Button - Orange Theme */
+.submit-btn-orange {
+    background-color: var(--secondary-orange);
+    box-shadow: 0 4px 12px rgba(242, 120, 0, 0.15);
+}
+
+.submit-btn-orange:hover {
+    background-color: var(--secondary-orange-hover);
+    box-shadow: 0 6px 20px rgba(242, 120, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.submit-btn-orange:active {
+    transform: translateY(0);
+}
+
+/* Custom Scrollbar for Form if fields overflow (e.g. smaller laptops) */
+@media (max-height: 700px) {
+    .card-perspective-viewport {
+        height: 520px;
+        margin-top: 80px;
+    }
+    .card-face {
+        padding: 24px;
+    }
+    .card-header-logo {
+        margin-bottom: 10px;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .card-header-logo img.logo-icon {
+        height: 38px;
+    }
+    .card-header-logo img.logo-text {
+        height: 14px;
+    }
+    .card-title-group {
+        margin-bottom: 12px;
+    }
+    .card-title {
+        font-size: 20px;
+    }
+    .input-field {
+        padding: 10px 14px 10px 42px;
+        font-size: 14px;
+    }
+    .input-wrapper i.input-icon {
+        font-size: 14px;
+        left: 14px;
+    }
+    .submit-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .header-container {
+        padding: 20px 24px;
+    }
+    .brand-logo-container img.logo-text {
+        display: none; /* Hide long logo text on tiny mobile */
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+    .nav-link {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    .card-perspective-viewport {
+        width: calc(100% - 32px);
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .card-face {
+        padding: 24px;
+    }
+}
+
+/* ==========================================================================
+   Parallax Starry Background Integration (Light Sky Theme)
+   ========================================================================== */
+
+.stars-bg-container {
+    position: fixed;
     top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at top right, #e0f2fe 0%, #f8fafc 100%);
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.toggle-left{
-    transform: translateX(-200%);
+#stars {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 60s linear infinite;
+}
+#stars:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inherit; /* Inherits the dynamic shadows! */
 }
 
-.container.active .toggle-left{
-    transform: translateX(0);
+#stars2 {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 100s linear infinite;
+}
+#stars2:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inherit; /* Inherits the dynamic shadows! */
 }
 
-.toggle-right{
-    right: 0;
-    transform: translateX(0);
+#stars3 {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 140s linear infinite;
+}
+#stars3:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: inherit; /* Inherits the dynamic shadows! */
 }
 
-.container.active .toggle-right{
-    transform: translateX(200%);
+@keyframes animStar {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-2000px);
+    }
 }
 
+/* ==========================================================================
+   Register Card & Slide-up Animations
+   ========================================================================== */
 
-/* =======================================================
-                        FOR MOBILE
-   ======================================================= */
-@media (max-width: 768px) {
-    
-    .container {
-        width: 100%;
-        height: 100vh;
-        min-height: auto;
-        border-radius: 0;
-        box-shadow: none;
-        overflow: hidden;
-    }
+.card-register-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0s, opacity 0.6s ease 0s;
+    transform: translateY(120%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 6;
+    border-radius: 28px;
+}
 
-    .form-container {
-        display: none !important;
-    }
+.card-face-register {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .toggle-container {
-        width: 100% !important;
-        height: 100% !important;
-        left: 0 !important;
-        top: 0 !important;
-        border-radius: 0 !important;
-        transform: translateX(0) !important;
-        z-index: 100;
-    }
+/* Active Slide-up states */
+body.show-register .card-perspective-viewport {
+    width: 640px;
+    height: 710px;
+}
 
-    .toggle {
-        background: linear-gradient(to top,#70D0F4,#CCE4ED);
-        width: 200% !important;
-        height: 100% !important;
-        transform: translateX(0);
-        left: 0 !important;
-        transition: transform 0.6s ease-in-out;
-        transform: translateX(-50%);
-    }
+body.show-register .card-register-wrapper {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, opacity 0.6s ease 0.3s;
+}
 
-    .container.active .toggle {
-        transform: translateX(0) !important;
-    }
+.login-slide-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, opacity 0.6s ease 0.3s;
+}
 
- 
-    .toggle-panel {
-        width: 50% !important;
-        height: 100% !important;
-        padding: 0 20px;
-        transform: none !important; 
-        top: 0 !important;
-    }
+body.show-register .login-slide-wrapper {
+    transform: translateY(-120%) scale(0.85);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0s, opacity 0.6s ease 0s;
+}
 
-    #student, #officer {
-        position: relative !important;
-        z-index: 1000 !important;
-        cursor: pointer;
-        width: 100%;
-        max-width: 200px;
-        margin-top: 20px;
-        background-color: #fff; 
-        color: #333;
-    }
+/* Smoothly hide top-right page flip button during register mode */
+body.show-register .page-flip-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px);
+}
 
-    .logo_row {
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 30px;
+/* Tighten spaces specifically inside the Register Card to prevent clipping */
+.card-face-register .card-header-logo {
+    margin-bottom: 16px;
+}
+
+.card-face-register .card-title-group {
+    margin-bottom: 16px;
+}
+
+/* Two-column Input Row Grid for Register Form */
+.register-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.register-grid-full {
+    grid-column: span 2;
+}
+
+/* Footer styling inside Register Card */
+.register-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.back-to-login-text {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.back-to-login-text a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.back-to-login-text a:hover {
+    color: var(--primary-blue-hover);
+    text-decoration: underline;
+}
+
+/* Responsive updates for small height screens */
+@media (max-height: 700px) {
+    body.show-register .card-perspective-viewport {
+        height: 560px;
     }
-    .logo-kmutt { width: 80px; }
-    .logo-fiet { height: 70px; }
+    .register-footer {
+        padding-top: 6px;
+        gap: 6px;
+    }
+    .register-grid {
+        gap: 8px;
+    }
+    .card-face-register .card-header-logo {
+        margin-bottom: 8px;
+    }
+    .card-face-register .card-title-group {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 680px) {
+    body.show-register .card-perspective-viewport {
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 600px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .register-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically on very small mobile screens */
+        gap: 12px;
+    }
+    .register-grid-full {
+        grid-column: span 1;
+    }
 }
 
 /* =======================================================
@@ -388,10 +904,11 @@ input:-webkit-autofill:active {
     color: #333;
     outline: none;
     transition: all 0.3s;
+    padding: 0;
 }
 
 .otp-box:focus {
-    border-color: #70D0F4;
-    box-shadow: 0 0 5px rgba(112, 208, 244, 0.5);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 5px rgba(0, 136, 219, 0.5);
     background-color: #fff;
 }
