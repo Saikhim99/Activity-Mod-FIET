@@ -1,5 +1,5 @@
 // ===============================================================
-//                           LOGIN
+//           Activity_FIET_Webpage.html (API Login)
 // ===============================================================
 
 window.moveNext = function(element, event) {
@@ -218,7 +218,7 @@ loginForms.forEach(form => {
 });
 
 // ===============================================================
-//                           REGISTER
+//      Register.html, Activity_FIET_Webpage.html
 // ===============================================================
 
 async function submitForm(event) {
@@ -346,7 +346,7 @@ function goLogin(event) {
 }
 
 // ===============================================================
-//                           FORMAT
+//      Register.html, Activity_FIET_Webpage.html
 // ===============================================================
 
 function formatIDCard(input) {
@@ -396,7 +396,7 @@ function formatPhoneNumber(input) {
 }
 
 // ===============================================================
-//                           HOMEPAGE SIDEBAR
+//         Homepage.html, HomepageTeacher.html
 // ===============================================================
 
 const profileMenuBtn = document.getElementById('profileMenuBtn');
@@ -419,7 +419,7 @@ if (profileMenuBtn && profileSidebar) {
 }
 
 // ===============================================================
-//                           MAJOR MODAL (DYNAMIC DATA)
+//            Major.html, MajorTeacher.html
 // ===============================================================
 
 const majorData = {
@@ -578,7 +578,7 @@ function closeActivityModal() {
 }
 
 // ===============================================================
-//                           SIDEBAR SLIDING INDICATOR
+//         Homepage.html, HomepageTeacher.html
 // ===============================================================
 document.addEventListener("DOMContentLoaded", function() {
     const sidebar = document.querySelector('.sidebar-menu');
@@ -609,7 +609,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ===============================================================
-//                           MAJOR MODAL
+//            Major.html, MajorTeacher.html
 // ===============================================================
 function openMajorModal(majorKey) {
     const data = majorData[majorKey];
@@ -644,7 +644,7 @@ function closeMajorModal() {
 }
 
 // ===============================================================
-//                           CLOSE MODALS
+//                         Global (All pages)
 // ===============================================================
 // Close modal when clicking outside of the modal container
 document.addEventListener('click', function(e) {
@@ -655,7 +655,7 @@ document.addEventListener('click', function(e) {
 });
 
 // ===============================================================
-//                           ACTIVITY MODAL (DYNAMIC DATA)
+//         Activity.html, ActivityTeacher.html
 // ===============================================================
 
 const activityData = {
@@ -721,7 +721,7 @@ const activityData = {
     }
 };
 // ===============================================================
-//                    ADMIN BUILD ACTIVITY PAGE
+//               AdminBuild_Activity.html
 // ===============================================================
 if (document.getElementById('majorDropdown')) {
 
@@ -845,7 +845,7 @@ document.addEventListener('click', function(e) {
 } // end AdminBuild guard
 
 // ===============================================================
-//                           AUTH & PROFILE
+//   HomepageTeacher.html, ProfileTeacher.html
 // ===============================================================
 document.addEventListener("DOMContentLoaded", function() {
     // 1. ดึงชื่อผู้ใช้มาแสดงใน Sidebar
@@ -1066,3 +1066,163 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchTeacherProfile();
     }
 });
+
+// ===============================================================
+//                           Activity_FIET_Webpage.html
+// ===============================================================
+
+        const cardViewport = document.getElementById('cardViewport');
+        const pageFlipBtn = document.getElementById('pageFlipBtn');
+        const pageFlipBtnText = document.getElementById('pageFlipBtnText');
+
+        // State tracker
+        let isFlipped = false;
+
+        // Card flip activation function
+        function toggleCardFlip() {
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                cardViewport.classList.add('flipped');
+                pageFlipBtnText.textContent = 'สำหรับนักเรียน';
+                pageFlipBtn.title = 'คลิกเพื่อเข้าสู่หน้าล็อกอินของนักศึกษา';
+            } else {
+                cardViewport.classList.remove('flipped');
+                pageFlipBtnText.textContent = 'สำหรับเจ้าหน้าที่ / อาจารย์';
+                pageFlipBtn.title = 'คลิกเพื่อเข้าสู่หน้าล็อกอินของเจ้าหน้าที่และอาจารย์';
+            }
+        }
+
+        // Add event listeners to all flip buttons
+        pageFlipBtn.addEventListener('click', toggleCardFlip);
+
+        // Format ID Card on input
+        function formatIDCard(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 13) value = value.slice(0, 13);
+
+            let formatted = '';
+            if (value.length > 0) {
+                formatted += value.substring(0, 1);
+            }
+            if (value.length > 1) {
+                formatted += '-' + value.substring(1, 5);
+            }
+            if (value.length > 5) {
+                formatted += '-' + value.substring(5, 10);
+            }
+            if (value.length > 10) {
+                formatted += '-' + value.substring(10, 12);
+            }
+            if (value.length > 12) {
+                formatted += '-' + value.substring(12, 13);
+            }
+            input.value = formatted;
+        }
+
+        // Toggle Password visibility
+        function togglePasswordVisibility(fieldId, iconElement) {
+            const passwordField = document.getElementById(fieldId);
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            }
+        }
+
+        // Navigation Link Handler
+        function handleNavigation(destination) {
+            Swal.fire({
+                title: destination,
+                text: `คุณคลิกปุ่มเชื่อมโยงไปยังหน้า: "${destination}"`,
+                icon: 'info',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#0088db',
+                customClass: {
+                    popup: 'swal2-thai'
+                }
+            });
+        }
+
+        // Form Submit handler
+        function handleFormSubmit(event, role) {
+            event.preventDefault();
+            const form = event.target;
+            const inputField = form.querySelector('input[type="text"]');
+            const username = inputField ? inputField.value : '';
+
+            Swal.fire({
+                title: 'เข้าสู่ระบบสำเร็จ!',
+                html: `ยินดีต้อนรับเข้าสู่ระบบ <b>${role === 'student' ? 'นักศึกษา' : 'เจ้าหน้าที่ / อาจารย์'}</b><br><br><b>ผู้ใช้งาน:</b> ${username}`,
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: role === 'student' ? '#0088db' : '#f27800'
+            }).then(() => {
+                // Redirect user to original target page
+                if (role === 'student') {
+                    window.location.href = '/Html/Homepage.html';
+                } else {
+                    window.location.href = '/Html/HomepageTeacher.html';
+                }
+            });
+        }
+
+        // Register Page interactive transition events
+        const toRegisterBtn = document.getElementById('toRegisterBtn');
+        const toLoginBtn = document.getElementById('toLoginBtn');
+
+        toRegisterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.add('show-register');
+        });
+
+        toLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.remove('show-register');
+        });
+
+        // Format Phone Number on input (0xx-xxx-xxxx)
+        function formatPhoneNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            
+            let formatted = '';
+            if (value.length > 0) {
+                formatted += value.substring(0, 3);
+            }
+            if (value.length > 3) {
+                formatted += '-' + value.substring(3, 6);
+            }
+            if (value.length > 6) {
+                formatted += '-' + value.substring(6, 10);
+            }
+            input.value = formatted;
+        }
+
+        // Register Form submission with SweetAlert2 and Auto-Fill Login
+        function handleRegisterSubmit(event) {
+            event.preventDefault();
+            const idCard = document.getElementById('reg_id_card').value;
+            const firstName = document.getElementById('reg_first_name').value;
+            
+            Swal.fire({
+                title: 'สมัครสมาชิกสำเร็จ!',
+                html: `ยินดีต้อนรับคุณ <b>${firstName}</b> เข้าสู่ระบบบริการข้อมูลกิจกรรม FIET<br><br><b>เลขประจำตัวบัตรประชาชน:</b> ${idCard}`,
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: '#0088db'
+            }).then(() => {
+                // Return to login card
+                document.body.classList.remove('show-register');
+                
+                // Proactively autofill the student login card input
+                const studentIdInput = document.querySelector('#studentLoginForm input[type="text"]');
+                if (studentIdInput) {
+                    studentIdInput.value = idCard;
+                }
+            });
+        }
+
