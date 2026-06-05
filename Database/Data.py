@@ -170,6 +170,19 @@ class TeacherUser(db.Model):
     Birthday = db.Column(db.NVARCHAR(100))
     ProfilePicture = db.Column(db.NVARCHAR(None))
 
+class TAUser(db.Model):
+    __tablename__ = 'TAUser'
+    __table_args__ = {'schema': 'dbo'}
+    
+    UserID = db.Column(db.Integer, primary_key=True, autoincrement=False)
+    FirstName = db.Column(db.NVARCHAR(300))
+    LastName = db.Column(db.NVARCHAR(300))
+    Major = db.Column(db.NVARCHAR(100))
+    Email = db.Column(db.NVARCHAR(255))
+    Telephone = db.Column(db.NVARCHAR(20))
+    Birthday = db.Column(db.NVARCHAR(100))
+    ProfilePicture = db.Column(db.NVARCHAR(None))
+
 # ยังไม่มีตาราง StaffUser ในฐานข้อมูล ลบโมเดลออกก่อนเพื่อไม่ให้เกิด Error
 
 # ==========================================
@@ -225,13 +238,16 @@ def login():
                         'user_id': user.ID
                     }
                 }), 200
-            else:
                 # สำหรับอาจารย์ ไม่ต้องใช้ OTP
                 user_info = None
                 if user.role == 'teacher':
                     teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
                     if teacher:
                         user_info = f"{teacher.FirstName} {teacher.LastName}"
+                elif user.role == 'ta':
+                    ta = TAUser.query.filter_by(UserID=user.ID).first()
+                    if ta:
+                        user_info = f"{ta.FirstName} {ta.LastName}"
 
                 return jsonify({
                     'status': 'success',
@@ -289,6 +305,10 @@ def verify_otp():
             teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
             if teacher:
                 user_info = f"{teacher.FirstName} {teacher.LastName}"
+        elif user.role == 'ta':
+            ta = TAUser.query.filter_by(UserID=user.ID).first()
+            if ta:
+                user_info = f"{ta.FirstName} {ta.LastName}"
         elif user.role == 'staff' or user.role == 'admin':
             pass
 
@@ -368,6 +388,41 @@ def teacher_profile():
                 'telephone': teacher.Telephone,
                 'birthday': teacher.Birthday,
                 'profile_picture': teacher.ProfilePicture
+            }
+        }), 200
+
+    except ValueError:
+        return jsonify({'status': 'error', 'message': 'Invalid user_id'}), 400
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': f'Database Error: {str(e)}'}), 500
+
+@app.route('/api/ta/profile', methods=['GET'])
+def ta_profile():
+    user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'Missing user_id'}), 400
+
+    try:
+        user = db.session.get(User, int(user_id))
+        if not user:
+            return jsonify({'status': 'error', 'message': 'User not found'}), 404
+
+        ta = TAUser.query.filter_by(UserID=user.ID).first()
+        if not ta:
+            return jsonify({'status': 'error', 'message': 'TA profile not found'}), 404
+
+        return jsonify({
+            'status': 'success',
+            'data': {
+                'user_id': user.ID,
+                'username': user.username,
+                'email': ta.Email or user.email,
+                'full_name': f"{ta.FirstName or ''} {ta.LastName or ''}".strip(),
+                'major': ta.Major,
+                'position': user.role.upper(),
+                'telephone': ta.Telephone,
+                'birthday': ta.Birthday,
+                'profile_picture': ta.ProfilePicture
             }
         }), 200
 
@@ -485,17 +540,29 @@ def register_teacher():
                 file.save(filepath)
                 profile_picture_path = f"/Photo/Profile/{filename}"
 
-        # 2. บันทึกข้อมูลลงตาราง TeacherUser
-        new_teacher = TeacherUser(
-            UserID=new_user.ID,
-            FirstName=request.form.get('thai_first_name'),
-            LastName=request.form.get('thai_last_name'),
-            Major=request.form.get('major'),
-            Email=email,
-            Telephone=request.form.get('telephone'),
-            Birthday=request.form.get('birthday'),
-            ProfilePicture=profile_picture_path
-        )
+        # 2. บันทึกข้อมูลลงตาราง TeacherUser หรือ TAUser
+        if role_name == 'ta':
+            new_teacher = TAUser(
+                UserID=new_user.ID,
+                FirstName=request.form.get('thai_first_name'),
+                LastName=request.form.get('thai_last_name'),
+                Major=request.form.get('major'),
+                Email=email,
+                Telephone=request.form.get('telephone'),
+                Birthday=request.form.get('birthday'),
+                ProfilePicture=profile_picture_path
+            )
+        else:
+            new_teacher = TeacherUser(
+                UserID=new_user.ID,
+                FirstName=request.form.get('thai_first_name'),
+                LastName=request.form.get('thai_last_name'),
+                Major=request.form.get('major'),
+                Email=email,
+                Telephone=request.form.get('telephone'),
+                Birthday=request.form.get('birthday'),
+                ProfilePicture=profile_picture_path
+            )
         db.session.add(new_teacher)
         db.session.commit()
 
