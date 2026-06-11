@@ -238,27 +238,28 @@ def login():
                         'user_id': user.ID
                     }
                 }), 200
-                # สำหรับอาจารย์ ไม่ต้องใช้ OTP
-                user_info = None
-                if user.role == 'teacher':
-                    teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
-                    if teacher:
-                        user_info = f"{teacher.FirstName} {teacher.LastName}"
-                elif user.role == 'ta':
-                    ta = TAUser.query.filter_by(UserID=user.ID).first()
-                    if ta:
-                        user_info = f"{ta.FirstName} {ta.LastName}"
 
-                return jsonify({
-                    'status': 'success',
-                    'message': 'เข้าสู่ระบบสำเร็จ',
-                    'data': {
-                        'user_id': user.ID,
-                        'username': user.username,
-                        'role': user.role,
-                        'full_name': user_info
-                    }
-                }), 200
+            # สำหรับอาจารย์ ไม่ต้องใช้ OTP
+            user_info = None
+            if user.role == 'teacher':
+                teacher = TeacherUser.query.filter_by(UserID=user.ID).first()
+                if teacher:
+                    user_info = f"{teacher.FirstName} {teacher.LastName}"
+            elif user.role == 'ta':
+                ta = TAUser.query.filter_by(UserID=user.ID).first()
+                if ta:
+                    user_info = f"{ta.FirstName} {ta.LastName}"
+
+            return jsonify({
+                'status': 'success',
+                'message': 'เข้าสู่ระบบสำเร็จ',
+                'data': {
+                    'user_id': user.ID,
+                    'username': user.username,
+                    'role': user.role,
+                    'full_name': user_info
+                }
+            }), 200
         else:
             return jsonify({'status': 'error', 'message': 'Username หรือ Password ไม่ถูกต้อง'}), 401
             
